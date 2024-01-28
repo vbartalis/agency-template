@@ -23,20 +23,22 @@ const { title, features, icon } = Astro.props;
       {title}
     </h2>
     <Paragraph>
-      <ul class="mt-8 space-y-4 text-heading-3 font-medium">
+      <div
+        class="mt-8 space-y-4 text-heading-3 font-medium list-outside list-disc"
+      >
         {
           features.map((feature) => {
             return (
-              <li>
+              <div class="flex items-center">
                 <span class="font-bold bg-box-bg rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">
                   &checkmark;
                 </span>
                 {feature}
-              </li>
+              </div>
             );
           })
         }
-      </ul>
+      </div>
     </Paragraph>
   </div>
   <span
