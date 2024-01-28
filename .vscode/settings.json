@@ -3,5 +3,6 @@
   "editor.defaultFormatter": "astro-build.astro-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "svg.preview.background": "editor"
 }
