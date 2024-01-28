@@ -1,16 +1,30 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/sections/Hero.astro";
+import Brands from "../components/sections/Brands.astro";
+import Services from "../components/sections/Services.astro";
+import AboutUs from "../components/sections/AboutUs.astro";
+import Features from "../components/sections/Features.astro";
+import CTA from "../components/sections/CTA.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Welcome to the Agency template">
+  <main class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden">
+    <Hero />
+    <Brands />
+    <Services />
+    <AboutUs />
+    <Features />
+    <CTA />
+  </main>
+  <!-- <style>
+    main {
+      height: 100%;
+      background: linear-gradient(limegreen, transparent),
+        linear-gradient(90deg, skyblue, transparent),
+        linear-gradient(-90deg, coral, transparent);
+
+      background-blend-mode: difference;
+    }
+  </style> -->
+</Layout>

@@ -1,0 +1,19 @@
+---
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div
+  class={`mx-auto max-w-7xl w-full px-5 sm:px-8 md:px-14 backdrop-blur-xl bg-black/5 shadow rounded-3xl ${className}`}
+>
+  <slot />
+</div>
+
+<style>
+  .shadow {
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+  }
+</style>
