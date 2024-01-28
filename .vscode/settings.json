@@ -1,11 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "astro-build.astro-vscode",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "svg.preview.background": "editor",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "svg.preview.background": "editor"
 }
