@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import Title from "../shared/Title.astro";
+import GradiantText from "../shared/GradiantText.astro";
+import myImage from "../../assets/images/dev-with-c-1.webp";
+import { solutions } from "../../utils/data.ts";
+
+type SolutionsProps = {
+  title: string;
+  painPoint: string;
+  agitatepainPoint: string;
+  solution: string;
+  img: ImageMetadata;
+};
+---
+
+<section id="features" class="flex flex-col gap-10">
+  {
+    solutions.map((solution: SolutionsProps, index: number) => {
+      const oddIndex = index % 2 === 0;
+      const flexRow = oddIndex ? "midmd:flex-row-reverse" : "midmd:flex-row";
+      return (
+        <Container className={`flex flex-col gap-10 lg:gap-12 ${flexRow}`}>
+          <div class="flex-1 flex midmd:w-7/12 lg:w-1/2 flex-col">
+            <Title>
+              <GradiantText>{solution.title}</GradiantText>
+            </Title>
+            <Paragraph className="mt-8 font-medium text:lg md:text-2xl">
+              {solution.painPoint}
+            </Paragraph>
+            <Paragraph className="mt-3 ">{solution.agitatepainPoint}</Paragraph>
+            <Paragraph className="mt-3 font-medium">
+              {solution.solution}
+            </Paragraph>
+          </div>
+
+          <div class="max-w-md mx-auto midmd:max-w-none lg:mx-0 lg:pr-10 xl:pr-2 flex-1 flex w-11/12 midmd:w-5/12 lg:w-1/2 midmd:h-auto">
+            <div class="w-full h-80 sm:h-96 midmd:h-full relative">
+              <div class="absolute rotate-45 -left-5 md:-left-10 lg:-left-20 xl:-left-24 p-1 top-1/2 w-16 h-16 bg-gradient-to-br from-primary to-orange-400 blur-3xl opacity-50" />
+              <div class="absolute p-1 -top-4 md:-top-10 right-0 w-20 h-20 bg-gradient-to-br from-primary to-orange-400 rounded-full blur-3xl opacity-60" />
+
+              <span class="absolute w-full aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-tr from-primary to-green-400 opacity-40 blur-2xl left-0 bottom-0" />
+              <Image
+                src={solution.img}
+                alt="banner image"
+                width="1240"
+                height="1385"
+                class="w-auto left-1/2 -translate-x-1/2 absolute bottom-0 max-h-full"
+              />
+            </div>
+          </div>
+        </Container>
+      );
+    })
+  }
+</section>
