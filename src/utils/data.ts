@@ -1,4 +1,6 @@
-import visibilityDilemma from "../assets/images/visibilityDilemma.jpg";
+import visibilityDilemma from "../assets/images/visibility-dilemma.jpg";
+import engagementGap from "../assets/images/engagement-gap.jpg";
+import resultsInHibernation from "../assets/images/results-in-hibernation.jpg";
 
 const services = [
   {
@@ -64,7 +66,7 @@ const solutions = [
       "It's frustrating to see competitors effortlessly engaging their audience while your brand struggles to spark conversations. Your content deserves better results, and we have the solution.",
     solution:
       "Our proven engagement tactics ignite conversations, turning passive viewers into active participants. Explore how we bridge the engagement gap in our video walkthrough.",
-    img: visibilityDilemma,
+    img: engagementGap,
   },
   {
     title: "Results in Hibernation",
@@ -74,7 +76,7 @@ const solutions = [
       "It's disheartening when the metrics show little growth or impact. Your time and resources are valuable, and it's time to break free from the cycle of stagnant results.",
     solution:
       "Our data-driven approach ensures every action is purposeful, yielding measurable results. Dive into our video guide to witness how we turn social media activities into a powerful engine for your brand's success.",
-    img: visibilityDilemma,
+    img: resultsInHibernation,
   },
 ];
 
