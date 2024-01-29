@@ -7,6 +7,73 @@ import Title from "../shared/Title.astro";
 import myImage from "../../assets/images/dev-with-c-1.webp";
 import GradiantText from "../shared/GradiantText.astro";
 
+type FeatureProps = {
+  title: string;
+  description: string;
+};
+const features = [
+  {
+    title: "Advanced Analytics",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Targeted Ad Campaigns",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Content Calendar Management",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Influencer Collaborations",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Customized Reporting",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "A/B Testing",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Social Listening",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Trend Analysis",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "24/7 Customer Support",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Cross-Platform Integration",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Dynamic Content Personalization",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+  {
+    title: "Competitor Analysis and Benchmarking",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  },
+];
+
 export interface Props {
   className?: string;
 }
@@ -22,75 +89,22 @@ const { className } = Astro.props;
         Marketing
       </Title>
     </div>
-    <div class="flex flex-col lg:gap-10 lg:gap-12 midmd:flex-row mt-8">
-      <div class="flex items-center lg:w-1/2 flex-col">
-        <div class="text-heading-3 font-medium">
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >Advanced Analytics
-          </div>
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >Targeted Ad Campaigns
-          </div>
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >Content Calendar Management
-          </div>
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >Influencer Collaborations
-          </div>
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >Customized Reporting
-          </div>
-        </div>
-      </div>
-      <div class="flex items-center lg:w-1/2 flex-col">
-        <div class="text-heading-3 font-medium">
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >A/B Testing
-          </div>
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >Social Listening
-          </div>
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >Trend Analysis
-          </div>
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >24/7 Customer Support
-          </div>
-          <div class="flex items-center">
-            <span
-              class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center"
-              >&checkmark;</span
-            >Cross-Platform Integration
-          </div>
-        </div>
-      </div>
+    <div class="flex flex-row flex-wrap mt-8">
+      <!-- <div class="flex flex-col lg:gap-10 lg:gap-12 midmd:flex-row mt-8"> -->
+      <!-- <div class="flex  lg:w-1/2 flex-row"> -->
+      {
+        features.map((feature: FeatureProps) => {
+          return (
+            <div class="flex items-center text-heading-3 font-medium basis-full md:basis-1/2 lg:basis-1/3">
+              <span class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">
+                &checkmark;
+              </span>
+              {feature.title}
+            </div>
+          );
+        })
+      }
+      <!-- </div> -->
     </div>
   </Container>
 </section>
