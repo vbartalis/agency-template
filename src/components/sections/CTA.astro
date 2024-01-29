@@ -3,9 +3,15 @@ import Button from "../shared/Button.astro";
 import Container from "../shared/Container.astro";
 import CtaButton from "../shared/CtaButton.astro";
 import Paragraph from "../shared/Paragraph.astro";
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
-<section id="cta" class="pb-20">
+<section id="cta" class=`pb-20 ${className}`>
   <Container>
     <div
       class="w-full relative py-8 md:py-10 px-6 md:px-8 rounded-2xl bg-gradient-to-br from-slate-100 to-zinc-200 dark:from-slate-800 dark:to-zinc-800"

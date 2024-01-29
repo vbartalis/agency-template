@@ -11,9 +11,15 @@ import myHeroImage3 from "../../assets/images/hero3.jpg";
 import CtaButton from "../shared/CtaButton.astro";
 import ByResult from "./ByResult.astro";
 import GradiantText from "../shared/GradiantText.astro";
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
-<section class="relative pt-32 lg:pt-36">
+<section class=`relative pt-32 lg:pt-36 ${className}`>
   <Container className={"flex flex-col lg:flex-row gap-10 lg:gap-12"}>
     <div
       class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8

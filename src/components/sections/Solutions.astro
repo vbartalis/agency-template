@@ -14,9 +14,15 @@ type SolutionsProps = {
   solution: string;
   img: ImageMetadata;
 };
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
-<section id="features" class="flex flex-col">
+<section id="features" class=`flex flex-col ${className}`>
   {
     solutions.map((solution: SolutionsProps, index: number) => {
       const oddIndex = index % 2 === 0;

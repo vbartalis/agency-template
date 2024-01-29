@@ -69,9 +69,15 @@ const brands = [
     logo: paypallogo,
   },
 ];
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
-<section>
+<section class=`${className}`>
   <Container className="space-y-8">
     <div class="text-center max-w-3xl mx-auto">
       <Title>Trusted by leading brands in the industry.</Title>

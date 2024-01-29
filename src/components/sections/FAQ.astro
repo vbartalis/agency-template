@@ -1,21 +1,24 @@
 ---
-import { Image } from "astro:assets";
-import Info from "../cards/Info.astro";
 import Container from "../shared/Container.astro";
 import Paragraph from "../shared/Paragraph.astro";
 import Title from "../shared/Title.astro";
 
-import myImage from "../../assets/images/dev-with-c-1.webp";
-import GradiantText from "../shared/GradiantText.astro";
 import { faqs } from "../../utils/data.ts";
+import GradiantText from "../shared/GradiantText.astro";
 
 type FAQProps = {
   question: string;
   answer: string;
 };
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
-<section id="about-us">
+<section id="about-us" class=`${className}`>
   <Container className="">
     <div class="text-center  max-w-3xl mx-auto">
       <Title> Frequenty Asked <GradiantText>Questions</GradiantText></Title>
