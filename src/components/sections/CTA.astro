@@ -2,6 +2,7 @@
 import Button from "../shared/Button.astro";
 import Container from "../shared/Container.astro";
 import CtaButton from "../shared/CtaButton.astro";
+import GradiantText from "../shared/GradiantText.astro";
 import Paragraph from "../shared/Paragraph.astro";
 
 export interface Props {
@@ -21,14 +22,14 @@ const { className } = Astro.props;
           class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight
           font-bold text-heading-1"
         >
-          Quick Start your <span
-            class="text-transparent bg-clip-text bg-gradient-to-br from-indigo-600 from-20% via-primary via-30% to-green-600"
-            >Strategic Digital</span
-          > Marketing Campaing
+          Ready to
+
+          <GradiantText> Transform </GradiantText>
+          Your
+          <GradiantText> Social Presence? </GradiantText>
         </h1>
-        <Paragraph className={"pt-10"}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-          delectus architecto ullam earum
+        <Paragraph className="pt-10 font-semibold">
+          Quick Start your Strategic Digital Marketing Campaing Today!
         </Paragraph>
         <div class="mx-auto max-w-md sm:max-w-xl pt-10">
           <CtaButton />

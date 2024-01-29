@@ -22,7 +22,7 @@ export interface Props {
 const { className } = Astro.props;
 ---
 
-<section id="features" class=`flex flex-col ${className}`>
+<section id="solutions" class=`flex flex-col ${className}`>
   {
     solutions.map((solution: SolutionsProps, index: number) => {
       const oddIndex = index % 2 === 0;
