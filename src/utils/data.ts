@@ -150,4 +150,4 @@ const testimonials = [
   }
 ];
 
-export { services, solutions, faqs, testimonials };
+export { heroTitle, heroSubtitle,services, solutions, faqs, testimonials };
