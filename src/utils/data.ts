@@ -2,7 +2,8 @@ import visibilityDilemma from "../assets/images/visibility-dilemma.jpg";
 import engagementGap from "../assets/images/engagement-gap.jpg";
 import resultsInHibernation from "../assets/images/results-in-hibernation.jpg";
 
-const services = [
+const heroTitle = "Ignite Your Social Presence with Us!";
+const heroSubtitle = "Your journey to social media success begins here. Elevate your brand, engage your audience, and boost your business with our tailored social media marketing solutions.";
   {
     title: "Precision Targeting",
     features: [

@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import Container from "../shared/Container.astro";
 import Paragraph from "../shared/Paragraph.astro";
 import myHeroImage3 from "../../assets/images/hero3.avif";
+import { heroTitle, heroSubtitle } from "../../utils/data";
 import CtaButton from "../shared/CtaButton.astro";
 import ByResult from "./ByResult.astro";
 import GradiantText from "../shared/GradiantText.astro";
@@ -24,14 +25,10 @@ const { className } = Astro.props;
         class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight xl:text-6xl/tight
              font-bold text-heading-1"
       >
-        Ignite Your
-        <GradiantText>Social <br /> Presence</GradiantText>
-        with Us!
+        {heroTitle}
       </h1>
       <Paragraph className="mt-8 ">
-        Your journey to social media success begins here. Elevate your brand,
-        engage your audience, and boost your business with our tailored social
-        media marketing solutions.
+        {heroSubtitle}
       </Paragraph>
 
       <div class="mt-16 w-full flex flex-col">
