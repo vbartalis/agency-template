@@ -5,6 +5,7 @@ import resultsInHibernation from "../assets/images/results-in-hibernation.jpg";
 const heroTitleStart = "Ignite Your";
 const heroTitleEnd = "Social Presence";
 const heroSubtitle = "Your journey to social media success begins here. Elevate your brand, engage your audience, and boost your business with our tailored social media marketing solutions.";
+
 const services = [
   {
     title: "Precision Targeting",
