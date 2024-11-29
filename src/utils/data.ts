@@ -2,9 +2,12 @@ import visibilityDilemma from "../assets/images/visibility-dilemma.jpg";
 import engagementGap from "../assets/images/engagement-gap.jpg";
 import resultsInHibernation from "../assets/images/results-in-hibernation.jpg";
 
-const heroTitleStart = "Ignite Your";
-const heroTitleEnd = "Social Presence";
-const heroSubtitle = "Your journey to social media success begins here. Elevate your brand, engage your audience, and boost your business with our tailored social media marketing solutions.";
+const hero = {
+  titleStart: "Ignite Your",
+  titleGradient: "Social Presence",
+  titleEnd: "with Us!",
+  subtitle: "Your journey to social media success begins here. Elevate your brand, engage your audience, and boost your business with our tailored social media marketing solutions."
+};
 
 const services = [
   {
@@ -152,4 +155,4 @@ const testimonials = [
   }
 ];
 
-export { heroTitle, heroSubtitle,services, solutions, faqs, testimonials };
+export { hero, services, solutions, faqs, testimonials };
