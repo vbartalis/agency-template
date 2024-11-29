@@ -121,4 +121,31 @@ const faqs = [
   },
 ];
 
-export { services, solutions, faqs };
+const testimonials = [
+  {
+    title: "Sooo Comfortable",
+    text: "As someone always on the go, finding comfortable shoes is a must. These barefoot shoes are incredible! No more achy feet after long days at work. Thank you for keeping me comfortable and stylish!",
+    name: "Emily H.",
+    image: "/testimonials/testimonial1.jpg",
+    rating: 5,
+    isVerified: true
+  },
+  {
+    title: "Love These",
+    text: "I'm constantly searching for footwear that supports my active lifestyle. These barefoot shoes not only provide the support I need but also look great with any outfit. Definitely a must-have in my wardrobe",
+    name: "Sophia H.",
+    image: "/testimonials/testimonial2.jpg",
+    rating: 5,
+    isVerified: true
+  },
+  {
+    title: "Better then I thought",
+    text: "I've struggled with foot pain for years, but these shoes have been a revelation. They're like walking on clouds! I can't recommend them enough for anyone dealing with foot discomfort.",
+    name: "Oscar",
+    image: "/testimonials/testimonial3.jpg",
+    rating: 5,
+    isVerified: true
+  }
+];
+
+export { services, solutions, faqs, testimonials };

@@ -1,0 +1,56 @@
+---
+import { testimonials } from "../../utils/data";
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+---
+
+<section class:list={["max-w-7xl mx-auto px-8", className]}>
+  <h2 class="text-4xl md:text-5xl font-bold text-center dark:text-white text-[#002D31] mb-16">
+    What Business Owners Are Saying
+  </h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {
+      testimonials.map((testimonial) => (
+        <div class="bg-white rounded-lg p-6 shadow-lg border border-box-border">
+          <div class="mb-4">
+            <img
+              src={testimonial.image}
+              alt={`${testimonial.name}'s testimonial`}
+              class="w-full h-48 object-cover rounded-lg"
+            />
+          </div>
+          <div class="flex items-center mb-2">
+            {[...Array(testimonial.rating)].map(() => (
+              <svg
+                class="w-5 h-5 text-[#00B67A] fill-current"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+            ))}
+          </div>
+          <h3 class="text-xl font-bold text-[#002D31] mb-2">{testimonial.title}</h3>
+          <p class="text-gray-600 mb-4">{testimonial.text}</p>
+          <div class="flex items-center">
+            <span class="font-semibold text-[#002D31]">{testimonial.name}</span>
+            {testimonial.isVerified && (
+              <div class="flex items-center ml-2 text-[#00B67A]">
+                <svg
+                  class="w-4 h-4 fill-current mr-1"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                <span class="text-sm">Verified Purchaser</span>
+              </div>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
