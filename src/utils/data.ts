@@ -126,7 +126,7 @@ const testimonials = [
     title: "Sooo Comfortable",
     text: "As someone always on the go, finding comfortable shoes is a must. These barefoot shoes are incredible! No more achy feet after long days at work. Thank you for keeping me comfortable and stylish!",
     name: "Emily H.",
-    image: "/testimonials/testimonial1.jpg",
+    image: "/src/assets/images/testimonial1.avif",
     rating: 5,
     isVerified: true
   },
@@ -134,7 +134,7 @@ const testimonials = [
     title: "Love These",
     text: "I'm constantly searching for footwear that supports my active lifestyle. These barefoot shoes not only provide the support I need but also look great with any outfit. Definitely a must-have in my wardrobe",
     name: "Sophia H.",
-    image: "/testimonials/testimonial2.jpg",
+    image: "/src/assets/images/testimonial2.avif",
     rating: 5,
     isVerified: true
   },
@@ -142,7 +142,7 @@ const testimonials = [
     title: "Better then I thought",
     text: "I've struggled with foot pain for years, but these shoes have been a revelation. They're like walking on clouds! I can't recommend them enough for anyone dealing with foot discomfort.",
     name: "Oscar",
-    image: "/testimonials/testimonial3.jpg",
+    image: "/src/assets/images/testimonial3.avif",
     rating: 5,
     isVerified: true
   }
