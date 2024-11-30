@@ -1,7 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import Paragraph from "../shared/Paragraph.astro";
-import Title from "../shared/Title.astro";
 import GradiantText from "../shared/GradiantText.astro";
 import { solutions } from "../../utils/data.ts";
 
@@ -19,8 +16,13 @@ const { className } = Astro.props;
 ---
 
 <section id="solutions" class=`flex flex-col ${className}`>
+  <div class="text-center mb-16">
+    <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1">
+      {solutions.title}
+    </h2>
+  </div>
   {
-    solutions.map((solution: SolutionProps, index: number) => {
+    solutions.list.map((solution: SolutionProps, index: number) => {
       const oddIndex = index % 2 === 0;
       const flexRow = oddIndex ? "midmd:flex-row-reverse" : "midmd:flex-row";
       const imgAlign = oddIndex ? "midmd:justify-start pl-0" : "midmd:justify-end pr-0";
@@ -33,12 +35,14 @@ const { className } = Astro.props;
             class={`flex flex-col space-y-8 midmd:space-y-0 ${flexRow} mx-auto max-w-6xl w-full items-center`}
           >
             <div class="max-w-md mx-auto w-11/12 flex-1 flex midmd:w-6/12 lg:w-5/12 flex-col justify-center px-4">
-              <Title>
-                <GradiantText>{solution.title}</GradiantText>
-              </Title>
-              <Paragraph className="mt-8 font-medium">
-                {solution.solution}
-              </Paragraph>
+              <div class="flex flex-col gap-8 max-w-xl mx-auto midmd:mx-0">
+                <h2 class="text-2xl/tight sm:text-3xl/tight font-bold text-heading-1">
+                  {solution.title}
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300">
+                  {solution.solution}
+                </p>
+              </div>
             </div>
 
             <div class={`max-w-md mx-auto midmd:max-w-none flex-1 flex w-11/12 midmd:w-6/12 lg:w-7/12 midmd:h-auto ${imgAlign}`}>

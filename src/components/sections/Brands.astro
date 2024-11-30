@@ -1,44 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import Container from "../shared/Container.astro";
-import Title from "../shared/Title.astro";
-
-import spotify from "../../assets/logos/spotify.png";
-import slack from "../../assets/logos/slack.png";
-import paypallogo from "../../assets/logos/paypallogo.png";
-
-const brands = [
-  {
-    id: 1,
-    name: "Spotify",
-    logo: spotify,
-  },
-  {
-    id: 2,
-    name: "Slack",
-    logo: slack,
-  },
-  {
-    id: 3,
-    name: "Paypal",
-    logo: paypallogo,
-  },
-  {
-    id: 4,
-    name: "Spotify",
-    logo: spotify,
-  },
-  {
-    id: 5,
-    name: "Slack",
-    logo: slack,
-  },
-  {
-    id: 6,
-    name: "Paypal",
-    logo: paypallogo,
-  },
-];
+import { brands } from "../../utils/data";
+import GradiantText from "../shared/GradiantText.astro";
 
 export interface Props {
   className?: string;
@@ -47,25 +11,27 @@ export interface Props {
 const { className } = Astro.props;
 ---
 
-<section class=`${className}`>
-  <Container className="space-y-8">
-    <div class="text-center max-w-3xl mx-auto">
-      <Title>Trusted by leading brands in the industry.</Title>
-    </div>
-    <div class="flex justify-center flex-wrap gap-4">
-      {
-        brands.map((brand) => (
-          <div class="p-4 sm:p-5 rounded-xl border border-box-border group bg-box-bg">
-            <Image
-              src={brand.logo}
-              width="100"
-              height="60"
-              alt={brand.name}
-              class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105"
-            />
-          </div>
-        ))
-      }
+<section class={`relative py-20 md:py-24 ${className}`}>
+  <Container>
+    <div class="flex flex-col gap-8 items-center">
+      <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 text-center">
+        {brands.title}
+      </h2>
+      <div class="flex justify-center flex-wrap gap-4">
+        {
+          brands.list.map((brand) => (
+            <div class="p-4 sm:p-5 rounded-lg bg-body border border-box-border group">
+              <Image
+                src={brand.logo}
+                alt={brand.name}
+                width={140}
+                height={40}
+                class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105"
+              />
+            </div>
+          ))
+        }
+      </div>
     </div>
   </Container>
 </section>

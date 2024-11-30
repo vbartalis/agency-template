@@ -10,32 +10,31 @@ const hero = {
   img: "https://offer.groundedfootwear.co/freedom/en/us/img/offer-product-image.jpg"
 };
 
-const solutions = [
-  {
-    title: "Strengthened Muscles",
-    solution:
-      "Our targeted visibility strategies cut through the clutter, ensuring your brand is not just seen but remembered. Watch our video to see how we make your presence impossible to ignore.",
-    img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-1.jpg",
-  },
-  {
-    title: "Prevent Slip and Fall",
-    solution:
-      "Our proven engagement tactics ignite conversations, turning passive viewers into active participants. Explore how we bridge the engagement gap in our video walkthrough.",
-    img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-4.jpg",
-  },
-  {
-    title: "Natural Foot Movement",
-    solution:
-      "Experience true freedom of movement with our minimalist design. The flexible sole allows your feet to move naturally, strengthening foot muscles and improving balance.",
-    img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-2.jpg",
-  },
-  {
-    title: "Alleviate Foot & Joint Pain",
-    solution:
-      "Protect your feet and joints from the damaging impacts caused by raised heel padded shoes. Our shock-absorbing insole prevents repetitive injuries to the foot, knees, hips, and back.",
-    img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-3.jpg",
-  },
-];
+const solutions = {
+  title: "Improve Your Feet & Health",
+  list: [
+    {
+      title: "Strengthened Muscles",
+      solution: "Our targeted visibility strategies cut through the clutter, ensuring your brand is not just seen but remembered. Watch our video to see how we make your presence impossible to ignore.",
+      img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-1.jpg"
+    },
+    {
+      title: "Prevent Slip and Fall",
+      solution: "Our proven engagement tactics ignite conversations, turning passive viewers into active participants. Explore how we bridge the engagement gap in our video walkthrough.",
+      img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-4.jpg"
+    },
+    {
+      title: "Natural Foot Movement",
+      solution: "Experience true freedom of movement with our minimalist design. The flexible sole allows your feet to move naturally, strengthening foot muscles and improving balance.",
+      img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-2.jpg"
+    },
+    {
+      title: "Alleviate Foot & Joint Pain",
+      solution: "Protect your feet and joints from the damaging impacts caused by raised heel padded shoes. Our shock-absorbing insole prevents repetitive injuries to the foot, knees, hips, and back.",
+      img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-3.jpg"
+    }
+  ]
+};
 
 const faqs = [
   {
@@ -125,4 +124,47 @@ const features = {
   image: "/src/assets/images/qualities-product-image.webp"
 };
 
-export { hero, solutions, faqs, testimonials, features };
+const brands = {
+  title: "As Seen On",
+  list: [
+    {
+      id: 1,
+      name: "Spotify",
+      logo: "/src/assets/logos/spotify.png"
+    },
+    {
+      id: 2,
+      name: "Slack",
+      logo: "/src/assets/logos/slack.png"
+    },
+    {
+      id: 3,
+      name: "Paypal",
+      logo: "/src/assets/logos/paypallogo.png"
+    },
+    {
+      id: 4,
+      name: "Spotify",
+      logo: "/src/assets/logos/spotify.png"
+    },
+    {
+      id: 5,
+      name: "Slack",
+      logo: "/src/assets/logos/slack.png"
+    },
+    {
+      id: 6,
+      name: "Paypal",
+      logo: "/src/assets/logos/paypallogo.png"
+    }
+  ]
+};
+
+export {
+  hero,
+  solutions,
+  features,
+  testimonials,
+  faqs,
+  brands
+}
