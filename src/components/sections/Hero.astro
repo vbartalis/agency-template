@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import Container from "../shared/Container.astro";
 import Paragraph from "../shared/Paragraph.astro";
-import myHeroImage3 from "../../assets/images/hero3.avif";
 import { hero } from "../../utils/data";
 import CtaButton from "../shared/CtaButton.astro";
 import ByResult from "./ByResult.astro";
@@ -47,15 +46,13 @@ const { className } = Astro.props;
       class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl"
     >
       <Image
-        src={myHeroImage3}
+        src={hero.img}
         alt="Hero image"
         class="my-class"
         width="2350"
         height="2359"
         class="lg:absolute lg:w-full lg:h-full rounded-3xl object-cover lg:max-h-none max-h-96"
       />
-
-      <!-- https://unsplash.com/photos/man-in-gray-hoodie-sitting-on-brown-wooden-chair-on-green-grass-field-during-daytime-3faX71BaNe0?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash -->
     </div>
   </Container>
 </section>

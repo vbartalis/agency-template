@@ -6,68 +6,68 @@ const hero = {
   titleStart: "Ignite Your",
   titleGradient: "Social Presence",
   titleEnd: "with Us!",
-  subtitle: "Your journey to social media success begins here. Elevate your brand, engage your audience, and boost your business with our tailored social media marketing solutions."
+  subtitle: "Your journey to social media success begins here. Elevate your brand, engage your audience, and boost your business with our tailored social media marketing solutions.",
+  img: "https://offer.groundedfootwear.co/freedom/en/us/img/offer-product-image.jpg"
 };
 
 const solutions = [
   {
-    title: "Visibility Dilemma",
-    painPoint:
-      "Your brand is drowning in the vast sea of social media, struggling to be seen by your target audience.",
-    agitatepainPoint:
-      "It's disheartening when your carefully crafted content goes unnoticed. Your potential customers are out there, but they simply can't find you amidst the digital noise.",
+    title: "Strengthened Muscles",
     solution:
       "Our targeted visibility strategies cut through the clutter, ensuring your brand is not just seen but remembered. Watch our video to see how we make your presence impossible to ignore.",
-    img: visibilityDilemma,
+    img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-1.jpg",
   },
   {
-    title: "Engagement Gap",
-    painPoint:
-      "Despite your efforts, audience engagement remains lackluster, and interactions are not translating into meaningful connections.",
-    agitatepainPoint:
-      "It's frustrating to see competitors effortlessly engaging their audience while your brand struggles to spark conversations. Your content deserves better results, and we have the solution.",
+    title: "Prevent Slip and Fall",
     solution:
       "Our proven engagement tactics ignite conversations, turning passive viewers into active participants. Explore how we bridge the engagement gap in our video walkthrough.",
-    img: engagementGap,
+    img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-4.jpg",
   },
   {
-    title: "Results in Hibernation",
-    painPoint:
-      "Your social media efforts aren't translating into tangible results, leaving you wondering if your investment is paying off.",
-    agitatepainPoint:
-      "It's disheartening when the metrics show little growth or impact. Your time and resources are valuable, and it's time to break free from the cycle of stagnant results.",
+    title: "Natural Foot Movement",
     solution:
-      "Our data-driven approach ensures every action is purposeful, yielding measurable results. Dive into our video guide to witness how we turn social media activities into a powerful engine for your brand's success.",
-    img: resultsInHibernation,
+      "Experience true freedom of movement with our minimalist design. The flexible sole allows your feet to move naturally, strengthening foot muscles and improving balance.",
+    img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-2.jpg",
+  },
+  {
+    title: "Alleviate Foot & Joint Pain",
+    solution:
+      "Protect your feet and joints from the damaging impacts caused by raised heel padded shoes. Our shock-absorbing insole prevents repetitive injuries to the foot, knees, hips, and back.",
+    img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-3.jpg",
   },
 ];
 
 const faqs = [
   {
-    question: "How can social media marketing benefit my business?",
+    question: "How long will my order take to arrive?",
     answer:
-      "Social media marketing can significantly benefit your business by increasing brand awareness, engaging your target audience, driving website traffic, and generating leads. It also allows for direct interaction with your customers, fostering brand loyalty and providing valuable insights into consumer behavior.",
+      "All orders will be shipped within 24 - 48 hours after order confirmation. Please allow 6-8 business days for standard delivery. You will receive an email confirmation with your tracking number after your order is shipped.",
   },
   {
-    question: "What sets your agency apart from others?",
+    question: "What sets you apart from others?",
     answer:
-      "Our agency stands out through a combination of tailored strategies, data-driven decision-making, and a commitment to client collaboration. We prioritize understanding your unique business goals and offer personalized solutions that deliver measurable results.",
+      "Grounded Footwear's barefoot shoes distinguish themselves from traditional footwear in several key ways:" +
+      "Toe Space: They feature a wider toe box, enabling toes to spread and grip the ground, akin to being barefoot."
++ "Sole: Grounded Footwear's barefoot shoes boast thin and flexible soles, allowing natural foot movement and providing enhanced sensory feedback from the ground."
++ "Arch Support: In contrast to many modern shoes, which offer significant arch support, Grounded Footwear's barefoot shoes allow feet to support themselves, gradually strengthening foot muscles." +
+"Heel Drop: With a zero or minimal heel drop, Grounded Footwear's barefoot shoes promote a more natural foot posture and stride." +
+"Materials: Crafted from breathable, lightweight materials that conform to the foot's shape, Grounded Footwear's barefoot shoes offer a second skin feel.",
   },
   {
-    question: "How do you measure the success of social media campaigns?",
+    question: "Should I wear socks with these shoes?",
     answer:
-      "We employ a comprehensive approach to measure campaign success. This includes tracking key performance indicators (KPIs) such as engagement metrics, conversion rates, reach, and customer feedback. Our goal is to provide you with transparent and actionable insights into the effectiveness of your social media efforts.",
+      "our unique barefoot shoe design prioritizes a spacious single toe box, allowing your feet to move naturally without the confinement of separate toe compartments. Whether you prefer wearing socks or not is entirely up to you. Some individuals prefer the barefoot sensation, relishing the direct contact and natural feel against the shoe's interior. Others opt for socks for moisture control, decreased friction, or added comfort. Whatever your preference, our shoes are crafted to accommodate your choice, ensuring your feet enjoy the freedom they deserve.",
   },
   {
     question:
-      "Can you give examples of your successful social media campaigns?",
+      "How can I ensure I select the appropriate size?",
     answer:
-      "Certainly! We have a portfolio of successful campaigns across various industries. Check out our Case Studies to see how we've helped businesses like yours achieve their social media goals.",
+      "We suggest selecting the size you typically wear. If you fall between sizes or usually wear a half size, we recommend sizing up.",
   },
   {
-    question: "Do you offer customized social media strategies?",
+    question: "What is your return policy?",
     answer:
-      "Absolutely. Our team specializes in creating customized strategies tailored to your brand, industry, and target audience. We believe in the power of uniqueness, and our strategies reflect your specific goals and aspirations.",
+      "We offer a 30-day return policy for all orders. All items must be returned in their original condition and unworn. If you have any questions about our return policy, please contact our customer support team.",
   },
 ];
 
@@ -76,26 +76,53 @@ const testimonials = [
     title: "Sooo Comfortable",
     text: "As someone always on the go, finding comfortable shoes is a must. These barefoot shoes are incredible! No more achy feet after long days at work. Thank you for keeping me comfortable and stylish!",
     name: "Emily H.",
+    designation: "Verified Customer",
     image: "/src/assets/images/testimonial1.avif",
-    rating: 5,
-    isVerified: true
+    ratingImg: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
   },
   {
-    title: "Love These",
-    text: "I'm constantly searching for footwear that supports my active lifestyle. These barefoot shoes not only provide the support I need but also look great with any outfit. Definitely a must-have in my wardrobe",
-    name: "Sophia H.",
+    title: "Game Changer",
+    text: "I've tried many different shoes over the years, but these are truly special. The natural feel and comfort are unmatched. My feet feel stronger and more alive than ever!",
+    name: "Michael R.",
+    designation: "Verified Customer",
     image: "/src/assets/images/testimonial2.avif",
-    rating: 5,
-    isVerified: true
+    ratingImg: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
   },
   {
-    title: "Better then I thought",
-    text: "I've struggled with foot pain for years, but these shoes have been a revelation. They're like walking on clouds! I can't recommend them enough for anyone dealing with foot discomfort.",
-    name: "Oscar",
+    title: "Best Purchase Ever",
+    text: "These shoes have transformed my daily walks. The ground feel is amazing, and I love how my feet have gotten stronger. Plus, they look great with everything!",
+    name: "Sarah K.",
+    designation: "Verified Customer",
     image: "/src/assets/images/testimonial3.avif",
-    rating: 5,
-    isVerified: true
+    ratingImg: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
   }
 ];
 
-export { hero, solutions, faqs, testimonials };
+const features = {
+  title: "Your Feet Will Thank You",
+  features: [
+    {
+      title: "70% Lighter Than Other Shoes",
+      description: "Lightness isn't just about comfort. It's about reclaiming energy and vitality. Carrying less weight on your feet reduces energy use, promoting a natural stride and unlocking agility.",
+      icon: "/src/assets/images/feather_icon.svg"
+    },
+    {
+      title: "The Arch Support You Need",
+      description: "Grounded Footwear is ergonomically designed with arch support to align your foot and body. Feel discomfort fade from toes to heels, freeing your knees, hips, and lower back. Walk taller with timeless comfort.",
+      icon: "/src/assets/images/foot_icon.svg"
+    },
+    {
+      title: "Breathable Relief for Your Feet",
+      description: "Our breathable design keeps your feet cool and dry, even after long days. Airy fabrics let your feet breathe effortlessly, relieving joint stress and providing essential relief for conditions like neuropathy and arthritis.",
+      icon: "/src/assets/images/wind_icon.svg"
+    },
+    {
+      title: "Boost Your Circulation",
+      description: "Feel the difference as Grounded Footwear boosts circulation, refreshing your feet and legs, and revitalizing your entire stride. It's not just comfort; it's a refreshing boost for your body.",
+      icon: "/src/assets/images/heart_icon.svg"
+    }
+  ],
+  image: "/src/assets/images/qualities-product-image.webp"
+};
+
+export { hero, solutions, faqs, testimonials, features };

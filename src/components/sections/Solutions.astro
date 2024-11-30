@@ -5,12 +5,10 @@ import Title from "../shared/Title.astro";
 import GradiantText from "../shared/GradiantText.astro";
 import { solutions } from "../../utils/data.ts";
 
-type SolutionsProps = {
+type SolutionProps = {
   title: string;
-  painPoint: string;
-  agitatepainPoint: string;
   solution: string;
-  img: ImageMetadata;
+  img: string;
 };
 
 export interface Props {
@@ -22,40 +20,35 @@ const { className } = Astro.props;
 
 <section id="solutions" class=`flex flex-col ${className}`>
   {
-    solutions.map((solution: SolutionsProps, index: number) => {
+    solutions.map((solution: SolutionProps, index: number) => {
       const oddIndex = index % 2 === 0;
       const flexRow = oddIndex ? "midmd:flex-row-reverse" : "midmd:flex-row";
+      const imgAlign = oddIndex ? "midmd:justify-start pl-0" : "midmd:justify-end pr-0";
       const bgColor = oddIndex
         ? "bg-orange-100 dark:bg-gray-800 "
         : "bg-transparent";
       return (
         <div class={`w-100 py-10 md:py-16 ${bgColor}`}>
           <div
-            class={`flex flex-col gap-10 lg:gap-12 ${flexRow} mx-auto max-w-7xl w-full`}
+            class={`flex flex-col space-y-8 midmd:space-y-0 ${flexRow} mx-auto max-w-6xl w-full items-center`}
           >
-            <div class="max-w-md mx-auto w-11/12 flex-1 flex midmd:w-7/12 lg:w-1/2 flex-col">
+            <div class="max-w-md mx-auto w-11/12 flex-1 flex midmd:w-6/12 lg:w-5/12 flex-col justify-center px-4">
               <Title>
                 <GradiantText>{solution.title}</GradiantText>
               </Title>
-              <Paragraph className="mt-8 font-medium text:lg md:text-2xl">
-                {solution.painPoint}
-              </Paragraph>
-              <Paragraph className="mt-3 ">
-                {solution.agitatepainPoint}
-              </Paragraph>
-              <Paragraph className="mt-3 font-medium">
+              <Paragraph className="mt-8 font-medium">
                 {solution.solution}
               </Paragraph>
             </div>
 
-            <div class="max-w-md mx-auto midmd:max-w-none lg:mx-0 lg:pr-10 xl:pr-2 flex-1 flex w-11/12 midmd:w-5/12 lg:w-1/2 midmd:h-auto">
-              <div class="w-full h-80 sm:h-96 midmd:h-full relative">
-                <Image
+            <div class={`max-w-md mx-auto midmd:max-w-none flex-1 flex w-11/12 midmd:w-6/12 lg:w-7/12 midmd:h-auto ${imgAlign}`}>
+              <div class="rounded-[32px] border border-black overflow-hidden w-[400px]">
+                <img
                   src={solution.img}
-                  alt="banner image"
-                  width="1240"
-                  height="1385"
-                  class="w-auto left-1/2 -translate-x-1/2 absolute bottom-0 max-h-full rounded-3xl object-cover"
+                  alt={solution.title}
+                  width="400"
+                  height="600"
+                  class="w-full h-auto object-cover"
                 />
               </div>
             </div>
