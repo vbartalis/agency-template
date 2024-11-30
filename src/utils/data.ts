@@ -76,24 +76,24 @@ const testimonials = [
     title: "Sooo Comfortable",
     text: "As someone always on the go, finding comfortable shoes is a must. These barefoot shoes are incredible! No more achy feet after long days at work. Thank you for keeping me comfortable and stylish!",
     name: "Emily H.",
-    designation: "Verified Customer",
-    image: "/src/assets/images/testimonial1.avif",
+    designation: "Verified Purchaser",
+    image: "https://offer.groundedfootwear.co/freedom/en/us/img/testimonial-image-1.jpg",
     ratingImg: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
   },
   {
-    title: "Game Changer",
-    text: "I've tried many different shoes over the years, but these are truly special. The natural feel and comfort are unmatched. My feet feel stronger and more alive than ever!",
-    name: "Michael R.",
-    designation: "Verified Customer",
-    image: "/src/assets/images/testimonial2.avif",
+    title: "Love These",
+    text: "I'm constantly searching for footwear that supports my active lifestyle. These barefoot shoes not only provide the support I need but also look great with any outfit. Definitely a must-have in my wardrobe",
+    name: "Sophia H.",
+    designation: "Verified Purchaser",
+    image: "https://offer.groundedfootwear.co/freedom/en/us/img/testimonial-image-2.jpg",
     ratingImg: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
   },
   {
-    title: "Best Purchase Ever",
-    text: "These shoes have transformed my daily walks. The ground feel is amazing, and I love how my feet have gotten stronger. Plus, they look great with everything!",
-    name: "Sarah K.",
-    designation: "Verified Customer",
-    image: "/src/assets/images/testimonial3.avif",
+    title: "Better then I thought",
+    text: "I've struggled with foot pain for years, but these shoes have been a revelation. They're like walking on clouds! I can't recommend them enough for anyone dealing with foot discomfort.",
+    name: "Oscar",
+    designation: "Verified Purchaser",
+    image: "https://offer.groundedfootwear.co/freedom/en/us/img/testimonial-image-3.jpg",
     ratingImg: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
   }
 ];
