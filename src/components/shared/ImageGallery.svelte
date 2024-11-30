@@ -55,10 +55,10 @@
   </div>
 
   <!-- Gallery -->
-  <div class="relative w-full px-2">
+  <div class="relative w-full">
     <!-- Left Button -->
     <button
-      class="absolute -left-1 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 w-6 h-6 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 z-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center"
+      class="absolute -left-3 sm:-left-1 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 w-6 h-6 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 z-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center"
       on:click={() => scrollGallery('left')}
       aria-label="Previous image"
     >
@@ -68,14 +68,14 @@
     </button>
 
     <!-- Thumbnails -->
-    <div class="flex justify-center">
+    <div class="flex justify-center px-2 sm:px-0">
       <div 
-        class="flex gap-2 overflow-x-auto py-1 scrollbar-hide scroll-smooth items-center max-w-[95%]"
+        class="flex gap-2 overflow-x-auto py-1 scrollbar-hide scroll-smooth items-center justify-center w-full sm:w-[95%]"
         bind:this={galleryContainer}
       >
         {#each [mainImage, ...galleryImages.map(img => img.src)] as image, index}
           <button
-            class="flex-none w-16 h-16 rounded-lg overflow-hidden border border-black transition-colors duration-200 {selectedThumbnail === index ? 'opacity-100' : 'opacity-70 hover:opacity-100'}"
+            class="flex-none w-14 sm:w-16 h-14 sm:h-16 rounded-lg overflow-hidden border border-black transition-colors duration-200 {selectedThumbnail === index ? 'opacity-100' : 'opacity-70 hover:opacity-100'}"
             on:click={() => updateMainImage(image, index)}
           >
             <img
@@ -90,7 +90,7 @@
 
     <!-- Right Button -->
     <button
-      class="absolute -right-1 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 w-6 h-6 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 z-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center"
+      class="absolute -right-3 sm:-right-1 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-900 w-6 h-6 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 z-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center"
       on:click={() => scrollGallery('right')}
       aria-label="Next image"
     >
