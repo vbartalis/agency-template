@@ -17,7 +17,7 @@ const { className } = Astro.props;
       <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 mb-4 sm:mb-6">
         {brands.title}
       </h2>
-      <div class="flex justify-center flex-wrap gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {
           brands.list.map((brand) => (
             <div class="p-4 sm:p-5 rounded-lg bg-body border border-box-border group">
