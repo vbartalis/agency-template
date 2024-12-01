@@ -1,7 +1,7 @@
 ---
 import Container from "../components/shared/Container.astro";
 import Navitem from "../components/shared/Navitem.astro";
-import BtnLink from "../components/shared/BtnLink.astro";
+import CtaButton from "../components/shared/CtaButton.astro";
 
 const navItems = [
   {
@@ -89,12 +89,12 @@ const navItems = [
         <div
           class="lg:min-w-max flex items-center sm:w-max w-full pb-6 lg:pb-0 border-b border-box-bg lg:border-0 px-6 lg:px-0"
         >
-          <BtnLink
-            text="Get Started"
+          <CtaButton
             href="#cta"
             className="flex justify-center w-full sm:w-max"
-            variant="primary"
-          />
+          >
+            Get Started
+          </CtaButton>
         </div>
       </div>
 
