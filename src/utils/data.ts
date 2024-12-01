@@ -1,24 +1,24 @@
 const hero = {
-  titleStart: "Find Relief:",
-  titleGradient: "Non-Slip Barefoot",
-  titleEnd: "Shoes Ease Pressure on Feet and Joints",
+  titleStart: "Step Into",
+  titleGradient: "Natural Comfort",
+  titleEnd: "Walk Pain-Free Today",
   subtitle: "Experience unmatched comfort with our orthopedist-approved design, featuring pressure relief, wide toe box, and enhanced stability.",
   rating: {
     score: "4.8",
     total: "13,427",
-    text: "Pain Free Customers",
+    text: "Happy Customers",
     ratingImageUrl: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-4.5.svg",
     fullRatingImageUrl: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
   },
   features: [
-    "Orthopedist-Approved Design",
-    "Pressure Relief for Feet and Joints",
-    "Wide Toe Box for Natural Toe Placement",
-    "Enhanced Stability to Prevent Falls and Twists",
-    "All-Day Comfort and Slip-Resistant Traction"
+    "Doctor-Recommended Design",
+    "Zero-Drop Natural Movement",
+    "Extra-Wide Comfort Fit",
+    "Premium Shock Absorption",
+    "All-Weather Grip Technology"
   ],
   review: {
-    text: "I've been wearing grounded barefoot shoes for 4 weeks now, and they feel amazing. My feet feel great!",
+    text: "These shoes changed everything for me. No more foot pain, better posture, and I can finally enjoy long walks again!",
     author: "Jenni H.",
     rating: 5
   },
