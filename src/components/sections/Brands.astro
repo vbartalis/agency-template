@@ -11,10 +11,10 @@ export interface Props {
 const { className } = Astro.props;
 ---
 
-<section class={`relative py-20 md:py-24 ${className}`}>
-  <Container>
-    <div class="flex flex-col gap-8 items-center">
-      <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 text-center">
+<section class={`relative py-4 sm:py-6 ${className}`}>
+  <Container className="flex flex-col gap-4 sm:gap-6">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 mb-4 sm:mb-6">
         {brands.title}
       </h2>
       <div class="flex justify-center flex-wrap gap-4">
