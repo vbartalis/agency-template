@@ -27,9 +27,9 @@ const navItems = [
 ];
 ---
 
-<header class="absolute inset-x-0 top-0 z-50 py-6">
+<header class="absolute inset-x-0 top-0 z-50 py-6 bg-white shadow-md border-b border-gray-200 sticky">
   <Container>
-    <nav class="w-full flex justify-between gap-6 relative">
+    <nav class="w-full flex justify-between gap-6 relative overflow-visible">
       <!-- logo -->
       <div class="min-w-max inline-flex relative">
         <a href="/" class="relative flex items-center gap-3">
@@ -155,3 +155,29 @@ const navItems = [
     </nav>
   </Container>
 </header>
+
+<div
+  data-navbar
+  class="absolute top-full inset-x-0 bg-white shadow-md z-40 lg:hidden"
+>
+  <ul
+    class="border-t border-box-border lg:border-t-0 px-6 lg:px-0 pt-6 lg:pt-0 flex flex-col lg:flex-row gap-y-4 gap-x-3 text-lg text-heading-2 w-full lg:justify-center lg:items-center"
+  >
+    {
+      navItems.map((item) => {
+        return <Navitem {...item} />;
+      })
+    }
+  </ul>
+
+  <div
+    class="lg:min-w-max flex items-center sm:w-max w-full pb-6 lg:pb-0 border-b border-box-bg lg:border-0 px-6 lg:px-0"
+  >
+    <CtaButton
+      href="#cta"
+      className="flex justify-center w-full sm:w-max"
+    >
+      Order Now
+    </CtaButton>
+  </div>
+</div>
