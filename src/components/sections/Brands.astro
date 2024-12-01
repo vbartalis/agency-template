@@ -17,16 +17,16 @@ const { className } = Astro.props;
       <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 mb-4 sm:mb-6">
         {brands.title}
       </h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 max-w-6xl mx-auto">
         {
           brands.list.map((brand) => (
-            <div class="p-4 sm:p-5 rounded-lg bg-body border border-box-border group">
+            <div class="p-3 rounded-lg bg-body border border-box-border group flex items-center justify-center min-h-[80px]">
               <Image
                 src={brand.logo}
                 alt={brand.name}
-                width={140}
-                height={40}
-                class="h-7 sm:h-10 w-auto ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105"
+                width={200}
+                height={60}
+                class="w-full h-auto max-h-12 object-contain ease-linear duration-300 grayscale group-hover:!grayscale-0 group-hover:scale-105"
               />
             </div>
           ))
