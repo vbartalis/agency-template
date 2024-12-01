@@ -15,7 +15,7 @@ export interface Props {
 const { className } = Astro.props;
 ---
 
-<section id="solutions" class=`flex flex-col ${className}`>
+<section id="solutions" class={`relative px-6 ${className}`}>
   <div class="text-center mb-16">
     <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1">
       {solutions.title}

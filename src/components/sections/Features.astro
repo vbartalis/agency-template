@@ -1,8 +1,14 @@
 ---
 import { features } from "../../utils/data";
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
-<section class="relative px-6 py-24 sm:py-32 lg:px-8">
+<section class={`relative px-6 ${className}`}>
   <div class="mx-auto max-w-7xl">
     <div class="text-center mb-16">
       <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 mb-6">
