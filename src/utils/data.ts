@@ -68,12 +68,12 @@ const solutions = {
   list: [
     {
       title: "Strengthened Muscles",
-      solution: "Our targeted visibility strategies cut through the clutter, ensuring your brand is not just seen but remembered. Watch our video to see how we make your presence impossible to ignore.",
+      solution: "Experience natural foot strengthening with every step. Our minimalist design allows your feet to move and flex naturally, gradually building muscle strength and improving overall foot health.",
       img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-1.jpg"
     },
     {
       title: "Prevent Slip and Fall",
-      solution: "Our proven engagement tactics ignite conversations, turning passive viewers into active participants. Explore how we bridge the engagement gap in our video walkthrough.",
+      solution: "Our specialized grip technology and wide base design provide exceptional traction on any surface. Walk confidently knowing you have superior stability and control with every step.",
       img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-4.jpg"
     },
     {
@@ -83,7 +83,7 @@ const solutions = {
     },
     {
       title: "Alleviate Foot & Joint Pain",
-      solution: "Protect your feet and joints from the damaging impacts caused by raised heel padded shoes. Our shock-absorbing insole prevents repetitive injuries to the foot, knees, hips, and back.",
+      solution: "Say goodbye to foot and joint pain with our revolutionary design. The zero-drop heel and anatomical toe box work together to distribute pressure evenly, reducing strain on your feet, knees, and back.",
       img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-3.jpg"
     }
   ]
@@ -126,7 +126,7 @@ const faqs = [
 const testimonials = [
   {
     title: "Sooo Comfortable",
-    text: "As someone always on the go, finding comfortable shoes is a must. These barefoot shoes are incredible! No more achy feet after long days at work. Thank you for keeping me comfortable and stylish!",
+    text: "These barefoot shoes are a revelation! As someone who's constantly moving, my feet used to ache by day's end. Now I can work all day without any discomfort. The natural feel and stylish design make these my go-to shoes!",
     name: "Emily H.",
     designation: "Verified Purchaser",
     image: "https://offer.groundedfootwear.co/freedom/en/us/img/testimonial-image-1.jpg",
@@ -134,7 +134,7 @@ const testimonials = [
   },
   {
     title: "Love These",
-    text: "I'm constantly searching for footwear that supports my active lifestyle. These barefoot shoes not only provide the support I need but also look great with any outfit. Definitely a must-have in my wardrobe",
+    text: "Finally found the perfect shoes for my active lifestyle! The wide toe box gives my feet room to breathe, and the flexible sole makes every movement feel natural. They're not just comfortable - they look amazing with everything I wear.",
     name: "Sophia H.",
     designation: "Verified Purchaser",
     image: "https://offer.groundedfootwear.co/freedom/en/us/img/testimonial-image-2.jpg",
@@ -142,7 +142,7 @@ const testimonials = [
   },
   {
     title: "Better then I thought",
-    text: "I've struggled with foot pain for years, but these shoes have been a revelation. They're like walking on clouds! I can't recommend them enough for anyone dealing with foot discomfort.",
+    text: "After years of foot pain, I was skeptical, but these shoes exceeded all my expectations. The zero-drop design has improved my posture, and the comfort is unmatched. It's like walking on clouds while staying connected to the ground!",
     name: "Oscar",
     designation: "Verified Purchaser",
     image: "https://offer.groundedfootwear.co/freedom/en/us/img/testimonial-image-3.jpg",
