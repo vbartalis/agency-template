@@ -20,13 +20,9 @@ const { title } = Astro.props;
       content="Agency template made with ASTROJS and TAILWINDCSS"
     />
     <title>Agency template - {title}</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="/style/custom.css" />
   </head>
-  <body class="overflow-hidden overflow-y-auto bg-body">
+  <body class="overflow-hidden overflow-y-auto bg-body font-sans">
     <Navbar />
     <slot />
     <Footer />
