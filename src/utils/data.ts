@@ -20,7 +20,8 @@ const hero = {
   review: {
     text: "These shoes changed everything for me. No more foot pain, better posture, and I can finally enjoy long walks again!",
     author: "Jenni H.",
-    rating: 5
+    rating: 5,
+    image: "https://randomuser.me/api/portraits/women/17.jpg"
   },
   shipping: {
     days: 2,
