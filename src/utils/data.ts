@@ -58,7 +58,8 @@ const hero = {
       src: "https://ae-pic-a1.aliexpress-media.com/kf/S899d2197729b4fd394499cd32e08b0696.jpg_640x640.jpg_.webp",
       alt: "Pink barefoot shoe"
     },
-  ]
+  ],
+  ctaLink: "https://offer.groundedfootwear.co/freedom/en/us/order",
 };
 
 const solutions = {
