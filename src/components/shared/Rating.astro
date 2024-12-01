@@ -12,5 +12,5 @@ const { score, total, text, ratingImageUrl } = Astro.props;
 <div class="flex items-center gap-2">
   <img src={ratingImageUrl} alt={`${score} out of 5 stars`} class="h-5" />
   <span class="font-bold text-base text-gray-800 dark:text-gray-200">{score}/5</span>
-  <span class="text-sm text-gray-700 dark:text-gray-300">Based on {total}+ {text}</span>
+  <span class="font-bold text-sm text-gray-700 dark:text-gray-300"> {total}+ {text}</span>
 </div>

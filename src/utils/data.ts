@@ -5,7 +5,7 @@ const hero = {
   subtitle: "Experience unmatched comfort with our orthopedist-approved design, featuring pressure relief, wide toe box, and enhanced stability.",
   rating: {
     score: "4.8",
-    total: "13,427",
+    total: "20,000",
     text: "Happy Customers",
     ratingImageUrl: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-4.5.svg",
     fullRatingImageUrl: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
@@ -19,7 +19,7 @@ const hero = {
   ],
   review: {
     text: "These shoes changed everything for me. No more foot pain, better posture, and I can finally enjoy long walks again!",
-    author: "Jenni H.",
+    author: "Rachel D.",
     rating: 5,
     image: "https://randomuser.me/api/portraits/women/17.jpg"
   },
