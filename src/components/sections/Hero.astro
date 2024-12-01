@@ -5,12 +5,17 @@ import { hero } from "../../utils/data";
 import CtaButton from "../shared/CtaButton.astro";
 import GradiantText from "../shared/GradiantText.astro";
 import ImageGallery from "../shared/ImageGallery.svelte";
+import Rating from "../shared/Rating.astro";
+import Review from "../shared/Review.astro";
 
 export interface Props {
   className?: string;
 }
 
 const { className } = Astro.props;
+const shipDate = new Date();
+shipDate.setDate(shipDate.getDate() + hero.shipping.days);
+const shipDateStr = shipDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
 ---
 
 <section class=`relative pt-32 lg:pt-36 ${className}`>
@@ -19,20 +24,41 @@ const { className } = Astro.props;
       class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8
         lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2"
     >
-      <h2 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1">
+      <Rating {...hero.rating} />
+      
+      <h1 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 mt-6">
         {hero.titleStart}
+        <br/>
         <GradiantText>{hero.titleGradient}</GradiantText>
+        <br/>
         {hero.titleEnd}
-      </h2>
-      <Paragraph className="mt-8">
-        {hero.subtitle}
-      </Paragraph>
+      </h1>
+      
+      <ul class="mt-8 space-y-3 text-left">
+        {hero.features.map((feature) => (
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+
+      <Review {...hero.review} />
+
       <div class="mt-10 w-full flex max-w-md mx-auto lg:mx-0">
-        <div class="flex sm:flex-row flex-col gap-5 w-full">
-          <CtaButton variant="primary">Get Started</CtaButton>
+        <div class="flex flex-col gap-3 w-full">
+          <CtaButton>Get Your Shoes Now & Save</CtaButton>
+          <p class="text-sm flex items-center gap-1 justify-center lg:justify-start text-gray-600">
+            <span class="inline-block w-2 h-2 bg-green-500 rounded-full"></span>
+            Ship by {shipDateStr} | Stock Levels 
+            <span class="text-red-500 font-semibold ml-1">{hero.shipping.stockLevel}</span>
+          </p>
         </div>
       </div>
     </div>
+
     <div class="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none mx-auto w-full max-w-3xl px-4 sm:px-0">
       <ImageGallery 
         client:load

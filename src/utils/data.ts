@@ -1,8 +1,31 @@
 const hero = {
-  titleStart: "Ignite Your",
-  titleGradient: "Social Presence",
-  titleEnd: "with Us!",
-  subtitle: "Your journey to social media success begins here. Elevate your brand, engage your audience, and boost your business with our tailored social media marketing solutions.",
+  titleStart: "Find Relief:",
+  titleGradient: "Non-Slip Barefoot",
+  titleEnd: "Shoes Ease Pressure on Feet and Joints",
+  subtitle: "Experience unmatched comfort with our orthopedist-approved design, featuring pressure relief, wide toe box, and enhanced stability.",
+  rating: {
+    score: "4.8",
+    total: "13,427",
+    text: "Pain Free Customers",
+    ratingImageUrl: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-4.5.svg",
+    fullRatingImageUrl: "https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg"
+  },
+  features: [
+    "Orthopedist-Approved Design",
+    "Pressure Relief for Feet and Joints",
+    "Wide Toe Box for Natural Toe Placement",
+    "Enhanced Stability to Prevent Falls and Twists",
+    "All-Day Comfort and Slip-Resistant Traction"
+  ],
+  review: {
+    text: "I've been wearing grounded barefoot shoes for 4 weeks now, and they feel amazing. My feet feel great!",
+    author: "Jenni H.",
+    rating: 5
+  },
+  shipping: {
+    days: 2,
+    stockLevel: "LOW"
+  },
   img: "https://ae-pic-a1.aliexpress-media.com/kf/S2bc6b36b395d478b9e425ec3ab0188fdi/Aqua-Shoes-For-Women-Men-Barefoot-Water-Shoes-Anti-Slip-Quick-Drying-Outdoor-Beach-Upstream-Wading.jpg_.webp",
   galleryImages: [
     {
