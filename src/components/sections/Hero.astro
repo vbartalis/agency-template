@@ -18,29 +18,30 @@ const shipDateStr = shipDate.toLocaleDateString('en-US', { month: 'long', day: '
 ---
 
 <section class=`relative pt-32 lg:pt-36 pb-2 ${className}`>
-  <Container className={"flex flex-col lg:flex-row gap-10 lg:gap-12"}>
-    <div class="block lg:hidden w-full max-w-3xl mx-auto px-4 sm:px-0">
-      <ImageGallery 
-        client:load
-        mainImage={hero.img}
-        galleryImages={hero.galleryImages}
-      />
-    </div>
+  <Container className={"flex flex-col lg:flex-row gap-10 lg:gap-12 px-0 sm:px-0 lg:px-8"}>
     <div
       class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8
-        lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2"
+        lg:items-start lg:max-w-none max-w-3xl w-full lg:w-1/2 px-4 sm:px-6 lg:px-0"
     >
       <Rating {...hero.rating} />
       
-      <h1 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 mt-6 font-sans">
+      <h1 class="text-4xl/tight sm:text-5xl/tight font-bold text-heading-1 mt-6 font-sans w-full">
         {hero.titleStart}
         <br/>
         <GradiantText>{hero.titleGradient}</GradiantText>
         <br/>
         {hero.titleEnd}
       </h1>
+
+      <div class="block lg:hidden w-full mt-8">
+        <ImageGallery 
+          client:load
+          mainImage={hero.img}
+          galleryImages={hero.galleryImages}
+        />
+      </div>
       
-      <ul class="mt-8 space-y-3 text-left text-gray-800 dark:text-gray-200">
+      <ul class="mt-8 space-y-3 text-left text-gray-800 dark:text-gray-200 w-full">
         {hero.features.map((feature) => (
           <li class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
