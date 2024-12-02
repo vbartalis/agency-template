@@ -69,7 +69,7 @@ const solutions = {
     {
       title: "Strengthened Muscles",
       solution: "Experience natural foot strengthening with every step. Our minimalist design allows your feet to move and flex naturally, gradually building muscle strength and improving overall foot health.",
-      img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-1.jpg"
+      img: "https://images.squarespace-cdn.com/content/v1/5078313ae4b0e7addb844764/1456153316153-7MF5EGG4Y3WCRF3G9IFI/image-asset.png?format=2500w"
     },
     {
       title: "Prevent Slip and Fall",
@@ -77,9 +77,9 @@ const solutions = {
       img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-4.jpg"
     },
     {
-      title: "Natural Foot Movement",
-      solution: "Experience true freedom of movement with our minimalist design. The flexible sole allows your feet to move naturally, strengthening foot muscles and improving balance.",
-      img: "https://offer.groundedfootwear.co/freedom/en/us/img/benefit-image-2.jpg"
+      title: "Free Your Toes",
+      solution: "Our roomy design alleviates pressure on your toes and forefoot. making it especially advantageous for individuals dealing with conditions such as bunions. arthritis. plantar fasciitis. and diabetes.",
+      img: "https://img.staticdj.com/782791444e8b16c51da743fdf20f794c_1536.webp"
     },
     {
       title: "Alleviate Foot & Joint Pain",
