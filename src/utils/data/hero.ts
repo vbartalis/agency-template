@@ -60,7 +60,6 @@ const hero = {
             alt: "Pink barefoot shoe"
         },
     ],
-    ctaLink: "https://offer.groundedfootwear.co/freedom/en/us/order",
 };
 
 export {
