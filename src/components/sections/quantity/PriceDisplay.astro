@@ -1,0 +1,29 @@
+---
+interface Props {
+  price: number;
+  isOriginal?: boolean;
+  perUnit?: boolean;
+}
+
+const { price, isOriginal = false, perUnit = false } = Astro.props;
+---
+
+<p class={isOriginal ? 'original-price' : 'price'}>
+  ${price}{perUnit && '/ea'}
+</p>
+
+<style>
+  .price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+  }
+
+  .original-price {
+    color: #64748b;
+    text-decoration: line-through;
+    margin: 0.25rem 0 0 0;
+    font-size: 0.875rem;
+  }
+</style>

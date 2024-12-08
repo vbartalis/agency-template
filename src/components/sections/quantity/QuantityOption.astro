@@ -1,0 +1,135 @@
+---
+interface Props {
+  pairs: number;
+  pricePerPair: number;
+  originalPrice: number;
+  savePercentage: number;
+  selected?: boolean;
+  badge?: string;
+}
+
+const { pairs, pricePerPair, originalPrice, savePercentage, selected = false, badge = '' } = Astro.props;
+---
+
+<label class:list={["option", { selected }]}>
+  <div class="radio">
+    <input
+      type="radio"
+      name="quantity"
+      value={pairs}
+      checked={selected}
+    />
+    <span class="radio-custom"></span>
+  </div>
+  
+  <div class="content">
+    <div class="left">
+      <h3>{pairs} {pairs === 1 ? 'Pair' : 'Pairs'}</h3>
+      <p class="save">Save {savePercentage}%</p>
+    </div>
+    
+    <div class="right">
+      {badge && <span class="badge">{badge}</span>}
+      <p class="price">${pricePerPair}/ea</p>
+      <p class="original-price">${originalPrice * pairs}</p>
+    </div>
+  </div>
+</label>
+
+<style>
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 0.75rem;
+    background: white;
+  }
+
+  .selected {
+    border-color: #000;
+  }
+
+  .radio {
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .radio-custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: white;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+  }
+
+  input[type="radio"]:checked + .radio-custom::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #000;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+  }
+
+  .save {
+    color: #f43f5e;
+    font-weight: 500;
+    margin: 0.25rem 0 0 0;
+  }
+
+  .right {
+    text-align: right;
+  }
+
+  .badge {
+    display: block;
+    color: #047857;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+  }
+
+  .original-price {
+    color: #64748b;
+    text-decoration: line-through;
+    margin: 0.25rem 0 0 0;
+    font-size: 0.875rem;
+  }
+</style>

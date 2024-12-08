@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout-Checkout.astro';
+import QuantitySelector from '../components/sections/quantity/QuantitySelector.astro';
+import ColorSizeSelector from '../components/sections/colorsize/ColorSizeSelector.svelte';
+---
+
+<Layout title="Checkout">
+  <main>
+    <QuantitySelector />
+    <ColorSizeSelector client:load />
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f8fafc;
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+</style>

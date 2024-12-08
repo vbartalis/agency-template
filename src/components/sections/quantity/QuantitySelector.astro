@@ -1,0 +1,57 @@
+---
+import QuantityHeader from './QuantityHeader.astro';
+import QuantityOption from './QuantityOption.astro';
+---
+
+<div class="quantity-selector">
+  <QuantityHeader />
+  
+  <div class="options">
+    <QuantityOption
+      pairs={1}
+      pricePerPair={69.99}
+      originalPrice={139.98}
+      savePercentage={50}
+      selected={true}
+    />
+    
+    <QuantityOption
+      pairs={2}
+      pricePerPair={62.99}
+      originalPrice={139.98}
+      savePercentage={55}
+      badge="Most Popular"
+    />
+    
+    <QuantityOption
+      pairs={3}
+      pricePerPair={55.99}
+      originalPrice={139.98}
+      savePercentage={60}
+      badge="Best Deal"
+    />
+  </div>
+</div>
+
+<script>
+  // Client-side interactivity
+  const options = document.querySelectorAll('input[type="radio"]');
+  options.forEach(option => {
+    option.addEventListener('change', (e) => {
+      const quantity = parseInt((e.target as HTMLInputElement).value);
+      localStorage.setItem('selectedQuantity', quantity.toString());
+      window.dispatchEvent(new CustomEvent('quantityChange', { detail: quantity }));
+    });
+  });
+</script>
+
+<style>
+  .quantity-selector {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .options {
+    padding: 0 1rem;
+  }
+</style>
