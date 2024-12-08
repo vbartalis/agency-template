@@ -52,6 +52,13 @@ import QuantityOption from './QuantityOption.astro';
       const quantity = parseInt((e.target as HTMLInputElement).value);
       localStorage.setItem('selectedQuantity', quantity.toString());
       window.dispatchEvent(new CustomEvent('quantityChange', { detail: quantity }));
+
+      // Update selected class
+      document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+      const optionElement = (e.target as HTMLInputElement).closest('.option');
+      if (optionElement) {
+        optionElement.classList.add('selected');
+      }
     });
   });
 </script>
