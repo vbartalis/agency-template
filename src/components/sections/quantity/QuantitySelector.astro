@@ -1,5 +1,4 @@
 ---
-import PaymentInfo from '../../shared/PaymentInfo.astro';
 import QuantityHeader from './QuantityHeader.astro';
 import QuantityOption from './QuantityOption.astro';
 ---
@@ -9,29 +8,34 @@ import QuantityOption from './QuantityOption.astro';
     <QuantityHeader />
     
     <div class="options">
-      <QuantityOption
-        pairs={1}
-        pricePerPair={69.99}
-        originalPrice={139.99}
-        savePercentage={50}
-      />
+      <div class="quantity-option" data-pairs="1">
+        <QuantityOption
+          pairs={1}
+          pricePerPair={69.99}
+          originalPrice={139.99}
+          savePercentage={50}
+        />
+      </div>
       
-      <QuantityOption
-        pairs={2}
-        pricePerPair={62.99}
-        originalPrice={139.99}
-        savePercentage={55}
-        badge="Most Popular"
-        selected={true}
-      />
+      <div class="quantity-option" data-pairs="2">
+        <QuantityOption
+          pairs={2}
+          pricePerPair={62.99}
+          originalPrice={139.99}
+          savePercentage={55}
+          badge="Most Popular"
+        />
+      </div>
       
-      <QuantityOption
-        pairs={3}
-        pricePerPair={55.99}
-        originalPrice={139.99}
-        savePercentage={60}
-        badge="Best Deal"
-      />
+      <div class="quantity-option" data-pairs="3">
+        <QuantityOption
+          pairs={3}
+          pricePerPair={55.99}
+          originalPrice={139.99}
+          savePercentage={60}
+          badge="Best Deal"
+        />
+      </div>
     </div>
 
     <div class="px-4 mb-4">
@@ -39,27 +43,8 @@ import QuantityOption from './QuantityOption.astro';
         Select Your Color and Size <span class="arrow">→</span>
       </button>
     </div>
-    <PaymentInfo />
   </div>
 </div>
-
-<script>
-  const options = document.querySelectorAll('input[type="radio"]');
-  options.forEach(option => {
-    option.addEventListener('change', (e) => {
-      const quantity = parseInt((e.target as HTMLInputElement).value);
-      localStorage.setItem('selectedQuantity', quantity.toString());
-      window.dispatchEvent(new CustomEvent('quantityChange', { detail: quantity }));
-
-      // Update selected class
-      document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
-      const optionElement = (e.target as HTMLInputElement).closest('.option');
-      if (optionElement) {
-        optionElement.classList.add('selected');
-      }
-    });
-  });
-</script>
 
 <style>
   .quantity-selector {
@@ -80,6 +65,18 @@ import QuantityOption from './QuantityOption.astro';
 
   .options {
     padding: 0.5rem 1rem;
+  }
+
+  .quantity-option {
+    cursor: pointer;
+  }
+  
+  .quantity-option.selected :global(.option) {
+    border-color: #000;
+  }
+
+  .quantity-option.selected :global(input[type="radio"]) {
+    opacity: 1;
   }
 
   .cta-button {
@@ -118,3 +115,39 @@ import QuantityOption from './QuantityOption.astro';
     height: auto;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const storedQuantity = window.localStorage.getItem('selectedQuantity') || '1';
+    window.localStorage.setItem('selectedQuantity', storedQuantity);
+    
+    const options = document.querySelectorAll('.quantity-option');
+    options.forEach(option => {
+      const pairs = option.getAttribute('data-pairs');
+      const radio = option.querySelector('input[type="radio"]') as HTMLInputElement;
+      
+      if (pairs === storedQuantity) {
+        option.classList.add('selected');
+        if (radio) radio.checked = true;
+      }
+      
+      option.addEventListener('click', () => {
+        if (pairs) {
+          window.localStorage.setItem('selectedQuantity', pairs);
+          window.dispatchEvent(new CustomEvent('quantityChange', { detail: parseInt(pairs) }));
+          
+          options.forEach(opt => {
+            opt.classList.remove('selected');
+            const optRadio = opt.querySelector('input[type="radio"]') as HTMLInputElement;
+            if (optRadio) optRadio.checked = false;
+          });
+          
+          option.classList.add('selected');
+          if (radio) radio.checked = true;
+        }
+      });
+    });
+    
+    window.dispatchEvent(new CustomEvent('quantityChange', { detail: parseInt(storedQuantity) }));
+  });
+</script>

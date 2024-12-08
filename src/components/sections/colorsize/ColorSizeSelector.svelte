@@ -6,24 +6,26 @@
   let quantity = 1;
   let error = false;
   
+  $: checkoutState.set({
+    quantity,
+    selections: Array(quantity).fill({ color: '', size: '' })
+  });
+  
   onMount(() => {
+    const storedQuantity = window.localStorage.getItem('selectedQuantity');
+    if (storedQuantity) {
+      quantity = parseInt(storedQuantity);
+    }
+    
     window.addEventListener('quantityChange', ((e: CustomEvent) => {
       quantity = e.detail;
-      checkoutState.update(state => ({
-        ...state,
-        quantity: e.detail,
-        selections: Array(e.detail).fill({ color: '', size: '' })
-      }));
     }) as EventListener);
-    
-    // Initialize from localStorage if available
-    const savedQuantity = parseInt(localStorage.getItem('selectedQuantity') || '1');
-    quantity = savedQuantity;
-    checkoutState.update(state => ({
-      ...state,
-      quantity: savedQuantity,
-      selections: Array(savedQuantity).fill({ color: '', size: '' })
-    }));
+
+    return () => {
+      window.removeEventListener('quantityChange', ((e: CustomEvent) => {
+        quantity = e.detail;
+      }) as EventListener);
+    };
   });
 
   function handleNext() {
@@ -45,9 +47,6 @@
     <div class="header">
       <div class="title-bar">
         <h2>2. Select Your Color and Size</h2>
-      </div>
-      <div class="info-bar">
-        Select your preferred color and size for each pair
       </div>
     </div>
     
@@ -82,16 +81,17 @@
     border-radius: 0.5rem;
     background: white;
     overflow: hidden;
+    padding-bottom: 1rem;
   }
 
   .header {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .title-bar {
     background: #004236;
     color: white;
-    padding: 0.75rem 1rem;
+    padding: 1rem 1.5rem;
   }
 
   h2 {
@@ -101,43 +101,54 @@
   }
 
   .info-bar {
-    background: #e6f5f2;
-    color: #333;
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
+    color: #4a5568;
     font-size: 0.875rem;
-  }
-
-  .selectors {
-    padding: 0.5rem 1rem;
-  }
-
-  .next-button {
-    width: 100%;
-    background: #fbbf24;
-    color: #000;
-    border: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: background-color 0.2s;
-  }
-
-  .next-button:hover {
-    background: #f59e0b;
   }
 
   .error-message {
     background-color: #fef2f2;
     color: #991b1b;
     padding: 1rem;
-    margin: 0.5rem 1rem;
+    margin: 0.5rem 1.5rem;
     border-radius: 0.375rem;
     font-size: 0.875rem;
+  }
+
+  .next-button {
+    width: 100%;
+    padding: 1rem;
+    background: #fbbf24;
+    color: black;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 1.5rem;
+    width: calc(100% - 3rem);
+  }
+
+  .next-button:hover {
+    background: #f59e0b;
+  }
+
+  @media (max-width: 768px) {
+    .title-bar, .info-bar {
+      padding: 1rem;
+    }
+    
+    .error-message {
+      margin: 0.5rem 1rem;
+    }
+    
+    .next-button {
+      margin: 0 1rem;
+      width: calc(100% - 2rem);
+    }
   }
 </style>

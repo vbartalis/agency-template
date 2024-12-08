@@ -1,16 +1,63 @@
 <div class="payment-info">
+  <div class="security-badges">
+    <div class="badge">
+      <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/secure.png" alt="Secure SSL" class="icon" />
+      <span>Secure SSL Encryption</span>
+    </div>
+    <div class="badge">
+      <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/safe.png" alt="Safe Checkout" class="icon" />
+      <span>Guaranteed Safe Checkout</span>
+    </div>
+  </div>
   <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/bundle-cards.png" alt="Payment methods" class="payment-cards" />
 </div>
 
 <style>
   .payment-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     padding: 1rem;
+  }
+
+  .payment-info {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .payment-info {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+
+  .security-badges {
     display: flex;
     justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
   }
 
   .payment-cards {
     max-width: 300px;
     height: auto;
+  }
+
+  span {
+    font-size: 0.875rem;
+    color: #64748b;
   }
 </style>

@@ -11,13 +11,12 @@ interface Props {
 const { pairs, pricePerPair, originalPrice, savePercentage, selected = false, badge = '' } = Astro.props;
 ---
 
-<label class:list={["option", { selected }]}>
+<label class="option">
   <div class="radio">
     <input
       type="radio"
       name="quantity"
       value={pairs}
-      checked={selected}
     />
     <span class="radio-custom"></span>
   </div>
@@ -47,10 +46,6 @@ const { pairs, pricePerPair, originalPrice, savePercentage, selected = false, ba
     cursor: pointer;
     margin-bottom: 0.75rem;
     background: white;
-  }
-
-  .selected {
-    border-color: #000;
   }
 
   .radio {

@@ -2,12 +2,14 @@
 import Layout from '../layouts/Layout-Checkout.astro';
 import QuantitySelector from '../components/sections/quantity/QuantitySelector.astro';
 import ColorSizeSelector from '../components/sections/colorsize/ColorSizeSelector.svelte';
+import PaymentInfo from '../components/shared/PaymentInfo.astro';
 ---
 
 <Layout title="Checkout">
   <main>
     <QuantitySelector />
     <ColorSizeSelector client:load />
+    <PaymentInfo />
   </main>
 </Layout>
 
