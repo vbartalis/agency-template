@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout-Home.astro';
+---
+
+<Layout>
+  <div class="billing-page">
+    <h1>Shipping address</h1>
+    <p>Enter your shipping details</p>
+    <form>
+      <input type="email" placeholder="Email address" required />
+      <div class="name-fields">
+        <input type="text" placeholder="First name" required />
+        <input type="text" placeholder="Last name" required />
+      </div>
+      <input type="text" placeholder="Country/Region" required />
+      <input type="text" placeholder="Enter your address here" required />
+      
+      <h2>Payment</h2>
+      <div class="payment-method">
+        <label>
+          <input type="radio" name="payment" checked />
+          Credit Card
+        </label>
+        <div class="card-icons">
+          <img src="/path/to/visa.png" alt="Visa" />
+          <img src="/path/to/mastercard.png" alt="MasterCard" />
+          <img src="/path/to/amex.png" alt="Amex" />
+          <img src="/path/to/discover.png" alt="Discover" />
+        </div>
+      </div>
+      <input type="text" placeholder="Card number" required />
+      <div class="expiry-security">
+        <input type="text" placeholder="Month" required />
+        <input type="text" placeholder="Year" required />
+        <input type="text" placeholder="Security code" required />
+      </div>
+      <label>
+        <input type="checkbox" checked />
+        Use shipping address as billing address
+      </label>
+      <button type="submit">Complete Your Secure Purchase</button>
+    </form>
+  </div>
+</Layout>
+
+<style>
+  .billing-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+  }
+  .name-fields {
+    display: flex;
+    gap: 1rem;
+  }
+  .payment-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .card-icons img {
+    width: 40px;
+  }
+  .expiry-security {
+    display: flex;
+    gap: 1rem;
+  }
+  button {
+    background-color: #fbbf24;
+    color: #000;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  button:hover {
+    background-color: #f59e0b;
+  }
+</style>

@@ -1,4 +1,5 @@
 ---
+import PaymentInfo from '../../shared/PaymentInfo.astro';
 import QuantityHeader from './QuantityHeader.astro';
 import QuantityOption from './QuantityOption.astro';
 ---
@@ -38,10 +39,7 @@ import QuantityOption from './QuantityOption.astro';
         Select Your Color and Size <span class="arrow">→</span>
       </button>
     </div>
-
-    <div class="payment-info">
-      <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/bundle-cards.png" alt="Payment methods" class="payment-cards" />
-    </div>
+    <PaymentInfo />
   </div>
 </div>
 

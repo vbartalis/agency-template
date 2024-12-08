@@ -34,6 +34,9 @@
       }
     });
     error = !isValid;
+    if (isValid) {
+      window.location.href = '/billing';
+    }
   }
 </script>
 
