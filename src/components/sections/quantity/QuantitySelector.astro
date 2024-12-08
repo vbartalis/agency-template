@@ -33,9 +33,11 @@ import QuantityOption from './QuantityOption.astro';
       />
     </div>
 
-    <button class="cta-button" onclick="document.querySelector('.color-size-selector').scrollIntoView({ behavior: 'smooth' })">
-      Select Your Color and Size <span class="arrow">→</span>
-    </button>
+    <div class="px-4 mb-4">
+      <button class="cta-button" onclick="document.querySelector('.color-size-selector').scrollIntoView({ behavior: 'smooth' })">
+        Select Your Color and Size <span class="arrow">→</span>
+      </button>
+    </div>
 
     <div class="payment-info">
       <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/bundle-cards.png" alt="Payment methods" class="payment-cards" />
@@ -61,7 +63,7 @@ import QuantityOption from './QuantityOption.astro';
   }
 
   .quantity-selector + .color-size-selector {
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 
   .selector-container {
