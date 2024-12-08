@@ -33,7 +33,7 @@
       <div class="select-wrapper">
         <select 
           value={selection.color} 
-          on:change={(e) => updateSelection('color', e.target.value)}
+          on:change={(e) => updateSelection('color', (e.target as HTMLSelectElement).value)}
         >
           <option value="" disabled>Select Color</option>
           {#each colors as color}
@@ -51,7 +51,7 @@
       <label>Select Your Size</label>
       <select 
         value={selection.size} 
-        on:change={(e) => updateSelection('size', e.target.value)}
+        on:change={(e) => updateSelection('size', (e.target as HTMLSelectElement).value)}
       >
         <option value="" disabled>Select Your Size</option>
         {#each sizes as size}
