@@ -58,14 +58,48 @@
 <style>
   .color-size-selector {
     max-width: 600px;
-    margin: 2rem auto 0;
-    padding: 0 1rem;
+    margin: 0 auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background: white;
+    overflow: hidden;
+    padding: 0.5rem 1rem;
+  }
+
+  .selectors {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background: white;
+    overflow: hidden;
+    padding: 0.5rem 1rem;
+  }
+
+  .next-button {
+    width: 100%;
+    background: #fbbf24;
+    color: #000;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+  }
+
+  .next-button:hover {
+    background: #f59e0b;
   }
 
   .header {
     background: #004236;
     color: white;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0;
     margin-bottom: 1.5rem;
   }
 

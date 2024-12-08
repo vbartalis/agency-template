@@ -60,6 +60,10 @@ import QuantityOption from './QuantityOption.astro';
     margin: 0 auto;
   }
 
+  .quantity-selector + .color-size-selector {
+    margin-top: 1rem;
+  }
+
   .selector-container {
     border: 1px solid #e2e8f0;
     border-radius: 0.5rem;
@@ -68,15 +72,16 @@ import QuantityOption from './QuantityOption.astro';
   }
 
   .options {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
   }
 
   .cta-button {
     width: 100%;
+    border-radius: 0.5rem;
     background: #fbbf24;
     color: #000;
     border: none;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     font-size: 1.125rem;
     font-weight: 600;
     cursor: pointer;
@@ -97,7 +102,8 @@ import QuantityOption from './QuantityOption.astro';
 
   .payment-info {
     padding: 1rem;
-    text-align: center;
+    display: flex;
+    justify-content: center;
   }
 
   .payment-cards {
