@@ -1,0 +1,32 @@
+---
+import { banner } from "../../utils/data/banner";
+---
+
+<div class="bg-green-600 dark:bg-green-700 py-2 text-center relative z-[60]">
+  {banner.map((text, index) => (
+    <p
+      class="banner-text absolute inset-0 flex items-center justify-center text-white dark:text-gray-100 text-sm font-medium transition-opacity duration-500"
+      data-index={index}
+    >
+      {text}
+    </p>
+  ))}
+</div>
+
+<script>
+  let currentIndex = 0;
+  const texts = document.querySelectorAll('.banner-text');
+  texts[0].style.opacity = '1';
+
+  setInterval(() => {
+    texts[currentIndex].style.opacity = '0';
+    currentIndex = (currentIndex + 1) % texts.length;
+    texts[currentIndex].style.opacity = '1';
+  }, 3000);
+</script>
+
+<style>
+  .banner-text {
+    opacity: 0;
+  }
+</style>

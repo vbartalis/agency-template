@@ -4,6 +4,7 @@
   import ShoeSelector from './ShoeSelector.svelte';
   
   let quantity = 1;
+  let error = false;
   
   onMount(() => {
     window.addEventListener('quantityChange', ((e: CustomEvent) => {
@@ -24,6 +25,16 @@
       selections: Array(savedQuantity).fill({ color: '', size: '' })
     }));
   });
+
+  function handleNext() {
+    let isValid = true;
+    $checkoutState.selections.forEach(selection => {
+      if (!selection.color || !selection.size) {
+        isValid = false;
+      }
+    });
+    error = !isValid;
+  }
 </script>
 
 <div class="color-size-selector mt-8">
@@ -37,6 +48,12 @@
       </div>
     </div>
     
+    {#if error}
+      <div class="error-message">
+        Please ensure you've selected the products you wish to purchase.
+      </div>
+    {/if}
+
     <div class="selectors">
       {#each Array(quantity) as _, i}
         <ShoeSelector index={i} />
@@ -44,7 +61,7 @@
     </div>
   
     <div class="px-4 mb-4">
-      <button class="next-button">
+      <button class="next-button" on:click={handleNext}>
         Next <span>→</span>
       </button>
     </div>
@@ -110,5 +127,14 @@
 
   .next-button:hover {
     background: #f59e0b;
+  }
+
+  .error-message {
+    background-color: #fef2f2;
+    color: #991b1b;
+    padding: 1rem;
+    margin: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
   }
 </style>
