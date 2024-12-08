@@ -25,11 +25,11 @@ const { pairs, pricePerPair, originalPrice, savePercentage, selected = false, ba
   <div class="content">
     <div class="left">
       <h3>{pairs} {pairs === 1 ? 'Pair' : 'Pairs'}</h3>
-      <p class="save">Save {savePercentage}%</p>
+      <p class="save"><strong>Save {savePercentage}%</strong></p>
     </div>
     
     <div class="right">
-      {badge && <span class="badge">{badge}</span>}
+      {badge && <span class="badge"><span class="star">★</span> <strong>{badge}</strong></span>}
       <p class="price">${pricePerPair}/ea</p>
       <p class="original-price">${originalPrice * pairs}</p>
     </div>
@@ -104,12 +104,10 @@ const { pairs, pricePerPair, originalPrice, savePercentage, selected = false, ba
 
   .save {
     color: #f43f5e;
-    font-weight: 500;
+    font-weight: bold;
     margin: 0.25rem 0 0 0;
-  }
-
-  .right {
-    text-align: right;
+    display: flex;
+    align-items: center;
   }
 
   .badge {
@@ -117,6 +115,35 @@ const { pairs, pricePerPair, originalPrice, savePercentage, selected = false, ba
     color: #047857;
     font-size: 0.875rem;
     margin-bottom: 0.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .star {
+    color: #fbbf24;
+    margin-right: 0.25rem;
+  }
+
+  .badge {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .green {
+    color: #047857; /* Green color */
+  }
+
+  .sky-blue {
+    color: #0ea5e9; /* Sky blue color */
+  }
+
+  .right {
+    text-align: right;
   }
 
   .price {
