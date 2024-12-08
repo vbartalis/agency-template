@@ -1,8 +1,9 @@
 ---
-import Layout from '../layouts/Layout-Home.astro';
+import Layout from '../layouts/Layout-Checkout.astro';
+import PaymentInfo from '../components/shared/PaymentInfo.astro';
 ---
 
-<Layout>
+<Layout title="Billing - Your Store">
   <div class="billing-page">
     <h1>Shipping address</h1>
     <p>Enter your shipping details</p>
@@ -21,12 +22,7 @@ import Layout from '../layouts/Layout-Home.astro';
           <input type="radio" name="payment" checked />
           Credit Card
         </label>
-        <div class="card-icons">
-          <img src="/path/to/visa.png" alt="Visa" />
-          <img src="/path/to/mastercard.png" alt="MasterCard" />
-          <img src="/path/to/amex.png" alt="Amex" />
-          <img src="/path/to/discover.png" alt="Discover" />
-        </div>
+          <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Visa" />
       </div>
       <input type="text" placeholder="Card number" required />
       <div class="expiry-security">
@@ -40,6 +36,7 @@ import Layout from '../layouts/Layout-Home.astro';
       </label>
       <button type="submit">Complete Your Secure Purchase</button>
     </form>
+    <PaymentInfo />
   </div>
 </Layout>
 
@@ -48,47 +45,75 @@ import Layout from '../layouts/Layout-Home.astro';
     max-width: 600px;
     margin: 0 auto;
     padding: 1rem;
+    background-color: #fff;
+    color: #000;
   }
   form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
   }
   input[type="text"],
   input[type="email"] {
-    width: 100%;
     padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    color: #000;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    background: #000;
+    color: #fff;
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  h1, h2, p {
+    color: #000;
   }
   .name-fields {
     display: flex;
     gap: 1rem;
+    width: 100%;
+  }
+  .name-fields input {
+    flex: 1;
   }
   .payment-method {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
-  .card-icons img {
-    width: 40px;
-  }
   .expiry-security {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
+    width: 100%;
   }
-  button {
-    background-color: #fbbf24;
+  .expiry-security input {
+    width: 33.33%;
+    min-width: 0;
+  }
+  label {
     color: #000;
-    padding: 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
   }
-  button:hover {
-    background-color: #f59e0b;
+  @media (max-width: 600px) {
+    .billing-page {
+      padding: 0.5rem;
+    }
+    .name-fields {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .expiry-security {
+      flex-wrap: wrap;
+    }
+    .expiry-security input {
+      width: calc(33.33% - 0.35rem);
+    }
   }
 </style>
