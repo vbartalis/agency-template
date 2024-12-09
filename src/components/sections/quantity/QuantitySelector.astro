@@ -1,4 +1,5 @@
 ---
+import { prices } from '../../../utils/data/prices';
 import QuantityHeader from './QuantityHeader.astro';
 import QuantityOption from './QuantityOption.astro';
 ---
@@ -8,34 +9,17 @@ import QuantityOption from './QuantityOption.astro';
     <QuantityHeader />
     
     <div class="options">
-      <div class="quantity-option" data-pairs="1">
-        <QuantityOption
-          pairs={1}
-          pricePerPair={69.99}
-          originalPrice={139.99}
-          savePercentage={50}
-        />
-      </div>
-      
-      <div class="quantity-option" data-pairs="2">
-        <QuantityOption
-          pairs={2}
-          pricePerPair={62.99}
-          originalPrice={139.99}
-          savePercentage={55}
-          badge="Most Popular"
-        />
-      </div>
-      
-      <div class="quantity-option" data-pairs="3">
-        <QuantityOption
-          pairs={3}
-          pricePerPair={55.99}
-          originalPrice={139.99}
-          savePercentage={60}
-          badge="Best Deal"
-        />
-      </div>
+      {Object.entries(prices).map(([pairs, price]) => (
+        <div class="quantity-option" data-pairs={pairs}>
+          <QuantityOption
+            pairs={parseInt(pairs)}
+            pricePerPair={price.pricePerPair}
+            originalPrice={price.originalPrice}
+            savePercentage={price.savePercentage}
+            badge={price.badge}
+          />
+        </div>
+      ))}
     </div>
 
     <div class="px-4 mb-4">
