@@ -6,10 +6,15 @@
   let quantity = 1;
   let error = false;
   
-  $: checkoutState.set({
+  $: checkoutState.update(state => ({
+    ...state,
     quantity,
-    selections: Array(quantity).fill({ color: '', size: '' })
-  });
+    selections: state.selections.map((selection, index) => ({
+      ...selection,
+      color: selection.color || '',
+      size: selection.size || ''
+    }))
+  }));
   
   onMount(() => {
     const storedQuantity = window.localStorage.getItem('selectedQuantity');

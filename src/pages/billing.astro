@@ -1,61 +1,82 @@
 ---
 import Layout from '../layouts/Layout-Checkout.astro';
 import PaymentInfo from '../components/shared/PaymentInfo.astro';
+import OrderSummary from '../components/sections/billing/OrderSummary.svelte';
 ---
 
 <Layout title="Billing - Your Store">
   <div class="billing-page">
-    <h1>Shipping address</h1>
-    <form>
-      <input type="email" placeholder="Email address" required />
-      <div class="name-fields">
-        <input type="text" placeholder="First name" required />
-        <input type="text" placeholder="Last name" required />
+    <div class="billing-container">
+      <div class="billing-form">
+        <h1>Shipping address</h1>
+        <form>
+          <input type="email" placeholder="Email address" required />
+          <div class="name-fields">
+            <input type="text" placeholder="First name" required />
+            <input type="text" placeholder="Last name" required />
+          </div>
+          <input type="text" placeholder="Country/Region" required />
+          <input type="text" placeholder="Enter your address here" required />
+          
+          <h2>Payment</h2>
+          <div class="payment-method">
+            <label>
+              <input type="radio" name="payment" checked />
+              Credit Card
+            </label>
+              <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Visa" />
+          </div>
+          <input type="text" placeholder="Card number" required />
+          <div class="expiry-security">
+            <input type="text" placeholder="Month" required />
+            <input type="text" placeholder="Year" required />
+            <input type="text" placeholder="Security code" required />
+          </div>
+          <label>
+            <input type="checkbox" checked />
+            Use shipping address as billing address
+          </label>
+          <button type="submit">Complete Your Secure Purchase</button>
+        </form>
+        <PaymentInfo />
       </div>
-      <input type="text" placeholder="Country/Region" required />
-      <input type="text" placeholder="Enter your address here" required />
-      
-      <h2>Payment</h2>
-      <div class="payment-method">
-        <label>
-          <input type="radio" name="payment" checked />
-          Credit Card
-        </label>
-          <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Visa" />
+      <div class="order-summary-container">
+        <OrderSummary client:load />
       </div>
-      <input type="text" placeholder="Card number" required />
-      <div class="expiry-security">
-        <input type="text" placeholder="Month" required />
-        <input type="text" placeholder="Year" required />
-        <input type="text" placeholder="Security code" required />
-      </div>
-      <label>
-        <input type="checkbox" checked />
-        Use shipping address as billing address
-      </label>
-      <button type="submit">Complete Your Secure Purchase</button>
-    </form>
-    <PaymentInfo />
+    </div>
   </div>
 </Layout>
 
 <style>
   .billing-page {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
-    background-color: #fff;
-    color: #000;
   }
+
+  .billing-container {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+  }
+
+  .billing-form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
   form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     width: 100%;
   }
+
   input[type="text"],
   input[type="email"] {
-    padding: 0.5rem;
+    padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 4px;
     background: #fff;
@@ -63,6 +84,7 @@ import PaymentInfo from '../components/shared/PaymentInfo.astro';
     width: 100%;
     box-sizing: border-box;
   }
+
   button {
     background: #000;
     color: #fff;
@@ -71,49 +93,90 @@ import PaymentInfo from '../components/shared/PaymentInfo.astro';
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    font-weight: 600;
   }
+
   h1, h2, p {
     color: #000;
     font-size: 1.125rem;
     font-weight: 600;
     font-family: "Poppins", sans-serif;
+    margin-bottom: 1rem;
   }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
   .name-fields {
     display: flex;
     gap: 1rem;
     width: 100%;
   }
+
   .name-fields input {
     flex: 1;
   }
+
   .payment-method {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
   }
+
   .expiry-security {
     display: flex;
     gap: 0.5rem;
     width: 100%;
   }
+
   .expiry-security input {
     width: 33.33%;
     min-width: 0;
   }
+
   label {
     color: #000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
+
+  @media (max-width: 1024px) {
+    .billing-container {
+      grid-template-columns: 1fr;
+    }
+
+    .billing-form {
+      order: 2;
+    }
+
+    .order-summary-container {
+      order: 1;
+    }
+  }
+
   @media (max-width: 600px) {
     .billing-page {
       padding: 0.5rem;
     }
+
+    .billing-form {
+      padding: 1rem;
+    }
+
     .name-fields {
       flex-direction: column;
       gap: 0.5rem;
     }
+
     .expiry-security {
       flex-wrap: wrap;
     }
+
     .expiry-security input {
       width: calc(33.33% - 0.35rem);
     }
