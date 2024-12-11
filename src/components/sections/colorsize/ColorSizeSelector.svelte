@@ -2,37 +2,46 @@
   import { onMount } from 'svelte';
   import { checkoutState } from '../../../stores/checkout';
   import ShoeSelector from './ShoeSelector.svelte';
-  
+
   let quantity = 1;
   let error = false;
-  
-  $: checkoutState.update(state => ({
-    ...state,
-    quantity,
-    selections: state.selections.map((selection, index) => ({
-      ...selection,
-      color: selection.color || '',
-      size: selection.size || ''
-    }))
-  }));
-  
+
+  // Update quantity from localStorage or event
   onMount(() => {
     const storedQuantity = window.localStorage.getItem('selectedQuantity');
     if (storedQuantity) {
       quantity = parseInt(storedQuantity);
     }
-    
-    window.addEventListener('quantityChange', ((e: CustomEvent) => {
+
+    const handleQuantityChange = (e: CustomEvent) => {
       quantity = e.detail;
-    }) as EventListener);
+      updateCheckoutState();
+    };
+
+    window.addEventListener('quantityChange', handleQuantityChange as EventListener);
 
     return () => {
-      window.removeEventListener('quantityChange', ((e: CustomEvent) => {
-        quantity = e.detail;
-      }) as EventListener);
+      window.removeEventListener('quantityChange', handleQuantityChange as EventListener);
     };
   });
 
+  // Function to update the checkout state
+  function updateCheckoutState() {
+    checkoutState.update(state => {
+      const updatedSelections = Array(quantity).fill(null).map((_, i) => ({
+        color: state.selections[i]?.color || '',
+        size: state.selections[i]?.size || ''
+      }));
+      const updatedState = { ...state, quantity, selections: updatedSelections };
+      console.log('Updated checkoutState:', updatedState);
+      return updatedState;
+    });
+  }
+
+  // Call updateCheckoutState initially to set the state
+  updateCheckoutState();
+
+  // Handle the "Next" button click
   function handleNext() {
     let isValid = true;
     $checkoutState.selections.forEach(selection => {
@@ -54,7 +63,7 @@
         <h2>2. Select Your Color and Size</h2>
       </div>
     </div>
-    
+
     {#if error}
       <div class="error-message">
         Please ensure you've selected the products you wish to purchase.
@@ -66,7 +75,7 @@
         <ShoeSelector index={i} />
       {/each}
     </div>
-  
+
     <div class="px-4 mb-4">
       <button class="next-button" on:click={handleNext}>
         Next <span>→</span>
@@ -105,12 +114,6 @@
     font-weight: 600;
   }
 
-  .info-bar {
-    padding: 1rem 1.5rem;
-    color: #4a5568;
-    font-size: 0.875rem;
-  }
-
   .error-message {
     background-color: #fef2f2;
     color: #991b1b;
@@ -143,7 +146,7 @@
   }
 
   @media (max-width: 768px) {
-    .title-bar, .info-bar {
+    .title-bar {
       padding: 1rem;
     }
     

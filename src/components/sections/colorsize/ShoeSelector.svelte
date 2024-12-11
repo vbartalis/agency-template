@@ -30,7 +30,7 @@
   
   <div class="selectors">
     <div class="select-group">
-      <label>Select Color: {selection.color || products[0].colors[0].name}</label>
+      <label>Select Color: {selection.color || ""}</label>
       <div class="select-wrapper">
         <select 
           value={selection.color} 
@@ -49,7 +49,7 @@
     </div>
     
     <div class="select-group">
-      <label>Select Your Size</label>
+      <label>Select Your Size:</label>
       <div class="select-wrapper size-wrapper">
         <select 
           class="size-select"
