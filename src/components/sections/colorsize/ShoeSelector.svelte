@@ -1,25 +1,20 @@
 <script lang="ts">
-  import { checkoutState } from '../../../stores/checkout';
-  import type { ShoeSelection } from '../../../stores/checkout';
+  import { createEventDispatcher } from 'svelte';
   import { products } from '../../../utils/data/products';
-  
+
   export let index: number;
-  
+  export let selection: { color: string; size: string };
+
+  const dispatch = createEventDispatcher();
+
   const sizes = Array.from({ length: 13 }, (_, i) => ({
     men: i + 6,
     women: i + 7.5
   }));
-  
-  let selection: ShoeSelection;
-  
-  $: {
-    selection = $checkoutState.selections[index] || { color: '', size: '' };
-  }
-  
+
   function updateSelection(field: 'color' | 'size', value: string) {
-    const newSelections = [...$checkoutState.selections];
-    newSelections[index] = { ...newSelections[index], [field]: value };
-    checkoutState.update(state => ({ ...state, selections: newSelections }));
+    selection = { ...selection, [field]: value };
+    dispatch('updateSelection', { field, value });
   }
 
   $: selectedSize = selection.size ? `MEN ${selection.size} / WOMEN ${Number(selection.size) + 1.5}` : 'Select Your Size';

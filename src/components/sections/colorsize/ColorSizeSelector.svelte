@@ -1,10 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { checkoutState } from '../../../stores/checkout';
+  import type { ShoeSelection } from '../../../stores/checkout';
   import ShoeSelector from './ShoeSelector.svelte';
 
   let quantity = 1;
   let error = false;
+  let localSelections: ShoeSelection[] = [];
 
   // Update quantity from localStorage or event
   onMount(() => {
@@ -15,7 +17,7 @@
 
     const handleQuantityChange = (e: CustomEvent) => {
       quantity = e.detail;
-      updateCheckoutState();
+      initializeLocalSelections();
     };
 
     window.addEventListener('quantityChange', handleQuantityChange as EventListener);
@@ -25,32 +27,33 @@
     };
   });
 
-  // Function to update the checkout state
-  function updateCheckoutState() {
-    checkoutState.update(state => {
-      const updatedSelections = Array(quantity).fill(null).map((_, i) => ({
-        color: state.selections[i]?.color || '',
-        size: state.selections[i]?.size || ''
-      }));
-      const updatedState = { ...state, quantity, selections: updatedSelections };
-      console.log('Updated checkoutState:', updatedState);
-      return updatedState;
-    });
+  function initializeLocalSelections() {
+    localSelections = Array(quantity).fill(null).map((_, i) => ({
+      color: $checkoutState.selections[i]?.color || '',
+      size: $checkoutState.selections[i]?.size || ''
+    }));
   }
 
-  // Call updateCheckoutState initially to set the state
-  updateCheckoutState();
+  // Initialize localSelections when quantity changes or component mounts
+  $: quantity, initializeLocalSelections();
+
+  function updateLocalSelection(index: number, field: 'color' | 'size', value: string) {
+    localSelections[index] = { ...localSelections[index], [field]: value };
+    localSelections = localSelections; // Trigger reactivity
+  }
 
   // Handle the "Next" button click
   function handleNext() {
     let isValid = true;
-    $checkoutState.selections.forEach(selection => {
+    localSelections.forEach(selection => {
       if (!selection.color || !selection.size) {
         isValid = false;
       }
     });
     error = !isValid;
     if (isValid) {
+      // Update the checkoutState here after validation
+      checkoutState.update(state => ({ ...state, quantity, selections: localSelections }));
       window.location.href = '/billing';
     }
   }
@@ -72,7 +75,7 @@
 
     <div class="selectors">
       {#each Array(quantity) as _, i}
-        <ShoeSelector index={i} />
+        <ShoeSelector index={i} bind:selection={localSelections[i]} on:updateSelection={({ detail }) => updateLocalSelection(i, detail.field, detail.value)} />
       {/each}
     </div>
 
