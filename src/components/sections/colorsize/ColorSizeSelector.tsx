@@ -1,43 +1,94 @@
 /** @jsxImportSource solid-js */
-import { createSignal, createEffect, type JSX } from 'solid-js';
-import { updateQuantity } from '../../../stores/cart';
+import { createSignal, createEffect, onCleanup, type JSX } from 'solid-js';
 import { products } from '../../../utils/data/products';
 
 const ColorSizeSelector = (): JSX.Element => {
-  const [selectedColor, setSelectedColor] = createSignal<string>('Black');
-  const [selectedSize, setSelectedSize] = createSignal<string>('');
-  const [quantity, setQuantity] = createSignal<number>(1);
+  const [selectedColors, setSelectedColors] = createSignal<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = createSignal<string[]>([]);
   const [error, setError] = createSignal(false);
+
+  const initializeSelections = (quantity: number) => {
+    const storedSelections = window.localStorage.getItem('selections');
+    if (storedSelections) {
+      const selections = JSON.parse(storedSelections);
+      const colors = selections.map((s: { color: string }) => s.color);
+      const sizes = selections.map((s: { size: string }) => s.size);
+
+      if (colors.length === quantity) {
+        setSelectedColors(colors);
+        setSelectedSizes(sizes);
+      } else {
+        setSelectedColors(Array(quantity).fill(''));
+        setSelectedSizes(Array(quantity).fill(''));
+      }
+    } else {
+      setSelectedColors(Array(quantity).fill(''));
+      setSelectedSizes(Array(quantity).fill(''));
+    }
+  };
+
+  const handleColorChange = (index: number, color: string) => {
+    setSelectedColors((colors) => {
+      const newColors = [...colors];
+      newColors[index] = color;
+      return newColors;
+    });
+  };
+
+  const handleSizeChange = (index: number, size: string) => {
+    setSelectedSizes((sizes) => {
+      const newSizes = [...sizes];
+      newSizes[index] = size;
+      return newSizes;
+    });
+  };
 
   createEffect(() => {
     const storedQuantity = window.localStorage.getItem('selectedQuantity');
-    if (storedQuantity) {
-      const newQuantity = parseInt(storedQuantity);
-      setQuantity(newQuantity);
-      updateQuantity(newQuantity);
+    const quantity = storedQuantity ? parseInt(storedQuantity) : 1;
+
+    initializeSelections(quantity);
+
+    const handleQuantityChange = (event: CustomEvent) => {
+      const newQuantity = event.detail;
+      initializeSelections(newQuantity);
+    };
+
+    window.addEventListener('quantityChange', handleQuantityChange as EventListener);
+
+    onCleanup(() => {
+      window.removeEventListener('quantityChange', handleQuantityChange as EventListener);
+    });
+  });
+
+  createEffect(() => {
+    const quantity = selectedColors().length;
+    if (selectedColors().length > 0 && selectedSizes().length > 0) {
+      window.localStorage.setItem(
+        'selections',
+        JSON.stringify(
+          Array.from({ length: quantity }).map((_, index) => ({
+            color: selectedColors()[index],
+            size: selectedSizes()[index],
+          }))
+        )
+      );
     }
   });
 
-  const handleColorChange = (color: string) => {
-    setSelectedColor(color);
-  };
-
-  const handleSizeChange = (size: string) => {
-    setSelectedSize(size);
-  };
-
   const handleNext = () => {
-    if (!selectedColor() || !selectedSize()) {
+    if (selectedColors().includes('') || selectedSizes().includes('')) {
       setError(true);
       return;
     }
     setError(false);
 
-    const selection = {
-      color: selectedColor(),
-      size: selectedSize(),
-      quantity: quantity()
-    };
+    const selection = Array.from({ length: selectedColors().length }).map(
+      (_, index) => ({
+        color: selectedColors()[index],
+        size: selectedSizes()[index],
+      })
+    );
     window.localStorage.setItem('shoeSelection', JSON.stringify(selection));
 
     window.location.href = '/billing';
@@ -58,35 +109,43 @@ const ColorSizeSelector = (): JSX.Element => {
           </div>
         )}
 
-        <div class="colors">
-          <h3>Select Color</h3>
-          <div class="color-options">
-            {products[0].colors.map(color => (
-              <button
-                class={`color-option ${selectedColor() === color.name ? 'selected' : ''}`}
-                onClick={() => handleColorChange(color.name)}
-              >
-                <img src={color.image} alt={color.name} />
-                <span>{color.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+        {Array.from({ length: selectedColors().length }).map((_, index) => (
+          <div class="selection">
+            <div class="colors">
+              <h3>Select Color for Pair {index + 1}</h3>
+              <div class="color-options">
+                {products[0].colors.map((color) => (
+                  <button
+                    class={`color-option ${
+                      selectedColors()[index] === color.name ? 'selected' : ''
+                    }`}
+                    onClick={() => handleColorChange(index, color.name)}
+                  >
+                    <img src={color.image} alt={color.name} />
+                    <span>{color.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
-        <div class="sizes">
-          <h3>Select Size</h3>
-          <div class="size-options">
-            {products[0].sizes.map(size => (
-              <button
-                class={`size-option ${selectedSize() === size.men ? 'selected' : ''}`}
-                onClick={() => handleSizeChange(size.men)}
-              >
-                <span>MEN {size.men}</span>
-                <span>WOMEN {size.women}</span>
-              </button>
-            ))}
+            <div class="sizes">
+              <h3>Select Size for Pair {index + 1}</h3>
+              <div class="size-options">
+                {products[0].sizes.map((size) => (
+                  <button
+                    class={`size-option ${
+                      selectedSizes()[index] === size.men ? 'selected' : ''
+                    }`}
+                    onClick={() => handleSizeChange(index, size.men)}
+                  >
+                    <span>MEN {size.men}</span>
+                    <span>WOMEN {size.women}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
 
         <div class="px-4 mb-4">
           <button class="next-button" onClick={handleNext}>
@@ -134,7 +193,8 @@ const ColorSizeSelector = (): JSX.Element => {
           font-size: 0.875rem;
         }
 
-        .colors, .sizes {
+        .colors,
+        .sizes {
           padding: 1.5rem;
         }
 
@@ -229,11 +289,11 @@ const ColorSizeSelector = (): JSX.Element => {
           .title-bar {
             padding: 1rem;
           }
-          
+
           .error-message {
             margin: 0.5rem 1rem;
           }
-          
+
           .next-button {
             margin: 0 1rem;
             width: calc(100% - 2rem);
