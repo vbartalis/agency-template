@@ -1,3 +1,4 @@
+/** @jsxImportSource solid-js */
 import { createEffect } from 'solid-js';
 import { cartState } from '../../../stores/cart';
 import { products } from '../../../utils/data/products';

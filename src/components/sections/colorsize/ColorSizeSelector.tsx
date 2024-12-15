@@ -1,8 +1,9 @@
-import { createSignal, onMount, createEffect } from 'solid-js';
-import { cartState, updateItem, updateQuantity } from '../../../stores/cart';
+/** @jsxImportSource solid-js */
+import { createSignal, createEffect, type JSX } from 'solid-js';
+import { updateQuantity } from '../../../stores/cart';
 import { products } from '../../../utils/data/products';
 
-const ColorSizeSelector = () => {
+const ColorSizeSelector = (): JSX.Element => {
   const [selectedColor, setSelectedColor] = createSignal<string>('Black');
   const [selectedSize, setSelectedSize] = createSignal<string>('');
   const [quantity, setQuantity] = createSignal<number>(1);
@@ -32,9 +33,12 @@ const ColorSizeSelector = () => {
     }
     setError(false);
 
-    for (let i = 0; i < quantity(); i++) {
-      updateItem(i, { color: selectedColor(), size: selectedSize() });
-    }
+    const selection = {
+      color: selectedColor(),
+      size: selectedSize(),
+      quantity: quantity()
+    };
+    window.localStorage.setItem('shoeSelection', JSON.stringify(selection));
 
     window.location.href = '/billing';
   };
