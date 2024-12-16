@@ -1,4 +1,12 @@
-export const prices = {
+type PriceDetails = {
+    pricePerPair: number;
+    originalPrice: number;
+    savePercentage: number;
+    badge: string;
+};
+
+// Use a Record type with number as key type
+export const prices: Record<number, PriceDetails> = {
     1: {
         pricePerPair: 69.99,
         originalPrice: 139.99,

@@ -1,16 +1,55 @@
 /** @jsxImportSource solid-js */
-import { createEffect } from 'solid-js';
-import { cartState } from '../../../stores/cart';
+import { createEffect, createSignal, onMount } from 'solid-js';
 import { products } from '../../../utils/data/products';
+import { prices } from '../../../utils/data/prices';
 
 const OrderSummary = () => {
+  const [localQuantity, setLocalQuantity] = createSignal<number>(0);
+  const [localSelections, setLocalSelections] = createSignal<
+    { color: string; size: string }[]
+  >([]);
+  const [totalDiscountedPrice, setTotalDiscountedPrice] =
+    createSignal<number>(0);
+  const [totalOriginalPrice, setTotalOriginalPrice] = createSignal<number>(0);
+  const [savePercentage, setSavePercentage] = createSignal<number>(0);
+
+  onMount(() => {
+    const storedQuantity = window.localStorage.getItem('selectedQuantity');
+    const storedSelections = window.localStorage.getItem('selections');
+
+    if (storedQuantity) {
+      const quantity = parseInt(storedQuantity);
+      console.log('selectedQuantity from localStorage:', quantity);
+      setLocalQuantity(quantity);
+
+      const priceInfo = prices[quantity] || prices[1];
+      setTotalDiscountedPrice(quantity * priceInfo.pricePerPair);
+      setTotalOriginalPrice(quantity * priceInfo.originalPrice);
+      setSavePercentage(priceInfo.savePercentage);
+    } else {
+      console.log('selectedQuantity not found in localStorage');
+    }
+
+    if (storedSelections) {
+      const selections = JSON.parse(storedSelections);
+      console.log('selections from localStorage:', selections);
+      setLocalSelections(selections);
+    } else {
+      console.log('selections not found in localStorage');
+    }
+  });
+
   const formatPrice = (price: number) => `$${price.toFixed(2)}`;
+
+  const goToCheckout = () => {
+    window.location.href = '/checkout'; // Change this to the actual checkout page URL
+  };
 
   return (
     <div class="order-summary">
       <div class="header">
         <h2>Order Summary</h2>
-        <span class="total">{formatPrice(cartState().total)}</span>
+        <span class="total">{formatPrice(totalDiscountedPrice())}</span>
       </div>
 
       <div class="new-release">
@@ -19,18 +58,20 @@ const OrderSummary = () => {
         <p class="benefit">Relieve pressure on your feet and joints</p>
       </div>
 
-      {cartState().items.map((item) => (
+      {localSelections().map((item) => (
         <div class="item">
-          <img 
-            src={products[0].colors.find(c => c.name === (item.color || 'Black'))?.image} 
-            alt="Grounded Freedom Shoes" 
+          <img
+            src={
+              products[0].colors.find((c) => c.name === item.color)?.image || ''
+            }
+            alt="Grounded Freedom Shoes"
             class="shoe-image"
           />
           <div class="item-details">
             <h4> Grounded Freedom Shoes</h4>
-            <p>Color: {item.color || 'Black'}</p>
+            <p>Color: {item.color}</p>
             <p>Size: MEN {item.size} / WOMEN {Number(item.size) + 1.5}</p>
-            <button class="edit-btn">Edit Order</button>
+            <button class="edit-btn" onClick={goToCheckout}>Edit Order</button>
           </div>
         </div>
       ))}
@@ -38,16 +79,23 @@ const OrderSummary = () => {
       <div class="price-details">
         <div class="retail">
           <span>Retail</span>
-          <span class="strike-through">{formatPrice(cartState().total / 0.6)}</span>
+          <span class="strike-through">
+            {formatPrice(totalOriginalPrice())}
+          </span>
         </div>
-        <p class="shipping-note">Shipping and tax will be settled upon checkout confirmation</p>
+        <p class="shipping-note">
+          Shipping and tax will be settled upon checkout confirmation
+        </p>
         <div class="savings">
-          <span>Today you saved</span>
-          <span class="discount">Discount: {formatPrice(cartState().discount)}</span>
+          <span>Today you saved {savePercentage()}%</span>
+          <span class="discount">
+            Discount:{' '}
+            {formatPrice(totalOriginalPrice() - totalDiscountedPrice())}
+          </span>
         </div>
         <div class="grand-total">
           <span>Grand Total:</span>
-          <span class="final-price">{formatPrice(cartState().total - cartState().discount)}</span>
+          <span class="final-price">{formatPrice(totalDiscountedPrice())}</span>
         </div>
       </div>
 
