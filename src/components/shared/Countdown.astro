@@ -1,0 +1,49 @@
+---
+interface Props {
+  coupon?: string;
+  initialMinutes?: number;
+}
+
+const { coupon = "HOLIDAY24", initialMinutes = 10 } = Astro.props;
+---
+
+<div class="max-w-[600px] mx-auto">
+  <div class="flex items-center w-full bg-gradient-to-r from-black to-green-600 text-white">
+    <div class="bg-black px-6 py-3">
+      <div class="flex items-center gap-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="font-bold">{coupon}</span>
+        <span class="bg-yellow-400 text-black text-xs px-2 py-0.5 rounded">PROMO APPLIED</span>
+      </div>
+    </div>
+    
+    <div class="flex-1 px-4 py-3">
+      <span class="font-medium">
+        Promo code expires in: 
+        <span class="countdown text-yellow-400 font-bold ml-1">00:00</span>
+        . Stay on this page
+      </span>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ initialMinutes }}>
+  const countdown = document.querySelector('.countdown');
+  let timeLeft = initialMinutes * 60;
+
+  function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    if (countdown) {
+      countdown.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+    if (timeLeft > 0) {
+      timeLeft--;
+    }
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>

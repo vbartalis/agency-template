@@ -3,10 +3,12 @@ import Layout from '../layouts/Layout-Checkout.astro';
 import QuantitySelector from '../components/sections/quantity/QuantitySelector.astro';
 import ColorSizeSelector from '../components/sections/colorsize/ColorSizeSelector.tsx';
 import PaymentInfo from '../components/shared/PaymentInfo.astro';
+import Countdown from '../components/shared/Countdown.astro';
 ---
 
 <Layout title="Checkout">
   <main>
+    <Countdown coupon="HOLIDAY24" initialMinutes={10} />
     <QuantitySelector />
     <ColorSizeSelector client:load />
     <PaymentInfo />
