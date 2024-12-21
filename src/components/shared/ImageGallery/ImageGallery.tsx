@@ -40,11 +40,6 @@ const ImageGallery = (props: ImageGalleryProps) => {
           <div 
             class="flex gap-2 overflow-x-auto py-1 scrollbar-hide scroll-smooth items-center justify-center w-full sm:w-[95%]"
             ref={galleryContainer}
-            style={{
-              'scrollbar-width': 'none',
-              '-ms-overflow-style': 'none',
-              '&::-webkit-scrollbar': { display: 'none' }
-            }}
           >
             {allImages.map((image, index) => (
               <Thumbnail
