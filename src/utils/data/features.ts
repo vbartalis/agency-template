@@ -22,7 +22,7 @@ const features = {
             icon: "/src/assets/images/heart_icon.svg"
         }
     ],
-    image: "/src/assets/images/qualities-product-image.webp"
+    image: "https://offer.groundedfootwear.co/freedom/en/us/img/qualities-product-image-2.png"
 };
 
 export {
