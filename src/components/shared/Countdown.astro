@@ -7,14 +7,16 @@ interface Props {
 const { coupon = "HOLIDAY24", initialMinutes = 10 } = Astro.props;
 ---
 
-<div class="mx-auto">
+<div class="max-w-[600px] mx-auto">
   <div class="flex items-center w-full bg-gradient-to-r from-black to-green-600 text-white">
     <div class="bg-black px-6 py-3">
-      <div class="flex items-center gap-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg>
-        <span class="font-bold">{coupon}</span>
+      <div class="flex flex-col items-center gap-2">
+        <div class="flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span class="font-bold">{coupon}</span>
+        </div>
         <span class="bg-yellow-400 text-black text-xs px-2 py-0.5 rounded">PROMO APPLIED</span>
       </div>
     </div>
