@@ -10,7 +10,7 @@ import Countdown from '../components/shared/Countdown.astro';
   <main>
     <Countdown coupon="HOLIDAY24" initialMinutes={10} />
     <QuantitySelector />
-    <ColorSizeSelector client:load />
+    <ColorSizeSelector client:visible />
     <PaymentInfo />
   </main>
 </Layout>

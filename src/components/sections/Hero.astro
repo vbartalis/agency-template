@@ -36,7 +36,7 @@ const shipDateStr = shipDate.toLocaleDateString('en-US', { month: 'long', day: '
 
       <div class="block lg:hidden w-full mt-8">
         <ImageGallery 
-          client:load
+          client:visible
           mainImage={hero.img}
           galleryImages={hero.galleryImages}
         />
@@ -69,7 +69,7 @@ const shipDateStr = shipDate.toLocaleDateString('en-US', { month: 'long', day: '
 
     <div class="hidden lg:flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none mx-auto w-full max-w-3xl px-4 sm:px-0">
       <ImageGallery 
-        client:load
+        client:visible
         mainImage={hero.img}
         galleryImages={hero.galleryImages}
       />
