@@ -1,9 +1,0 @@
-/* Hide scrollbar for all elements with the class 'scrollbar-hide' */
-.scrollbar-hide {
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer 10+ */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
-}
