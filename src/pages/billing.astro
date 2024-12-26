@@ -18,7 +18,10 @@ import Countdown from '../components/shared/Countdown.astro';
             <input type="text" placeholder="First name" required />
             <input type="text" placeholder="Last name" required />
           </div>
-          <input type="text" placeholder="Country/Region" required />
+          <label for="country-region">Country/Region</label>
+          <select id="country-region" name="country-region" required>
+            <option value="US" selected>United States</option>
+          </select>
           <input type="text" placeholder="Enter your address here" required />
           
           <h2>Payment</h2>
@@ -90,7 +93,8 @@ import Countdown from '../components/shared/Countdown.astro';
   }
 
   input[type="text"],
-  input[type="email"] {
+  input[type="email"],
+  select {
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 4px;
