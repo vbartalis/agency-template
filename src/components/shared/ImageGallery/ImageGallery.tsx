@@ -13,15 +13,18 @@ const ImageGallery = (props: ImageGalleryProps) => {
   const allImages = [props.mainImage, ...props.galleryImages.map(img => img.src)];
 
   const scrollGallery = (direction: 'left' | 'right') => {
-    if (!galleryContainer) return;
-    
-    const visibleWidth = galleryContainer.clientWidth;
-    const scrollAmount = direction === 'left' ? -visibleWidth : visibleWidth;
-    
-    galleryContainer.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth'
-    });
+    const currentIndex = selectedIndex();
+    const totalImages = allImages.length;
+
+    if (direction === 'left') {
+      const newIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
+      setSelectedImage(allImages[newIndex]);
+      setSelectedIndex(newIndex);
+    } else if (direction === 'right') {
+      const newIndex = currentIndex === totalImages - 1 ? 0 : currentIndex + 1;
+      setSelectedImage(allImages[newIndex]);
+      setSelectedIndex(newIndex);
+    }
   };
 
   const updateMainImage = (image: string, index: number) => {
