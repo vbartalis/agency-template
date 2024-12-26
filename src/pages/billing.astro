@@ -32,7 +32,11 @@ import Countdown from '../components/shared/Countdown.astro';
             </label>
               <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Visa" />
           </div>
-          <input type="text" placeholder="Card number" required />
+          <div class="card-number-container">
+            <input type="text" placeholder="Card number" required />
+            <img src="https://offer.groundedfootwear.co/freedom/en/us/v7/images/card-lock.png" alt="Lock" class="lock-icon" />
+            <div class="speech-bubble">All transactions are secure and encrypted.</div>
+          </div>
           <div class="expiry-security">
             <input type="text" placeholder="Month" required />
             <input type="text" placeholder="Year" required />
@@ -53,6 +57,20 @@ import Countdown from '../components/shared/Countdown.astro';
     </div>
   </div>
 </Layout>
+
+<script>
+  const lockIcon = document.querySelector('.lock-icon');
+  const speechBubble = document.querySelector('.speech-bubble');
+
+  lockIcon.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent the click from propagating to the document
+    speechBubble.style.display = speechBubble.style.display === 'none' ? 'block' : 'none';
+  });
+
+  document.addEventListener('click', () => {
+    speechBubble.style.display = 'none';
+  });
+</script>
 
 <style>
   .billing-page {
@@ -96,7 +114,7 @@ import Countdown from '../components/shared/Countdown.astro';
   input[type="email"],
   select {
     padding: 0.75rem;
-    border: 2px solid #333;
+    border: 1px solid #333;
     border-radius: 4px;
     background: #f9f9f9;
     color: #000;
@@ -143,8 +161,61 @@ import Countdown from '../components/shared/Countdown.astro';
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    border: 1px solid #ddd;
+    border: 2px solid #000;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .payment-method img {
+    height: 24px;
+  }
+
+  .payment-method label {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .card-number-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .lock-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .speech-bubble {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 0.5rem;
     border-radius: 4px;
+    white-space: nowrap;
+    display: none;
+  }
+
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 8px solid transparent;
+    border-left-color: #000;
   }
 
   .expiry-security {
