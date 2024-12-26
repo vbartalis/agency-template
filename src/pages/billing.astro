@@ -96,7 +96,7 @@ import Countdown from '../components/shared/Countdown.astro';
   input[type="email"],
   select {
     padding: 0.75rem;
-    border: 2px solid #333;
+    border: 1px solid #333;
     border-radius: 4px;
     background: #f9f9f9;
     color: #000;
@@ -143,8 +143,22 @@ import Countdown from '../components/shared/Countdown.astro';
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .payment-method img {
+    height: 24px;
+  }
+
+  .payment-method label {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .expiry-security {
