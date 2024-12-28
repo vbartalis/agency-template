@@ -30,6 +30,25 @@ const { title } = Astro.props;
     <Footer />
   </body>
   <script>
+    let lastScrollY = window.scrollY;
+    const banner = document.getElementById("banner");
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down: hide the banner
+        if (banner) banner.style.transform = "translateY(-100%)";
+        if (navbar) navbar.style.transform = "translateY(0)";
+      } else {
+        // Scrolling up: show the banner
+        if (banner) banner.style.transform = "translateY(0)";
+        if (navbar) navbar.style.transform = "translateY(0)";
+      }
+
+      lastScrollY = currentScrollY;
+    });
     detectSystemTheme();
 
     const switchTheme = document.querySelector(

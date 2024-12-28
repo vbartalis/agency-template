@@ -27,7 +27,7 @@ const navItems = [
 ];
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 pt-4 pb-0 bg-white dark:bg-gray-900 shadow-md border-b border-gray-200 dark:border-gray-700">
+<header id="navbar" class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md border-b border-gray-200 dark:border-gray-700 transition-transform duration-300">
   <Container>
     <nav class="w-full flex justify-between gap-6 relative overflow-visible">
       <!-- logo -->
@@ -106,3 +106,8 @@ const navItems = [
     </CtaButton>
   </div>
 </div>
+<style>
+  #navbar {
+    will-change: transform;
+  }
+</style>

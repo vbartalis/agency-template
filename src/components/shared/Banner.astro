@@ -2,7 +2,7 @@
 import { banner } from "../../utils/data/banner";
 ---
 
-<div class="bg-green-600 dark:bg-green-700 py-2 text-center relative z-[60]">
+<div id="banner" class="bg-green-600 dark:bg-green-700 py-2 text-center relative z-[60] transition-transform duration-300">
   {banner.map((text, index) => (
     <p
       class="banner-text absolute inset-0 flex items-center justify-center text-white dark:text-gray-100 text-sm font-medium transition-opacity duration-500"
@@ -28,5 +28,9 @@ import { banner } from "../../utils/data/banner";
 <style>
   .banner-text {
     opacity: 0;
+  }
+
+  #banner {
+    will-change: transform;
   }
 </style>
