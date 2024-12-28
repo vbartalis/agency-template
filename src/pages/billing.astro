@@ -59,20 +59,27 @@ import Countdown from '../components/shared/Countdown.astro';
 </Layout>
 
 <script>
-  const lockIcon = document.querySelector('.lock-icon');
-  const speechBubble = document.querySelector('.speech-bubble');
+  document.addEventListener('DOMContentLoaded', () => {
+    const lockIcon = document.querySelector('.lock-icon');
+    const speechBubble = document.querySelector('.speech-bubble');
 
-  lockIcon.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevent the click from propagating to the document
-    speechBubble.style.display = speechBubble.style.display === 'none' ? 'block' : 'none';
-  });
+    if (lockIcon instanceof HTMLElement && speechBubble instanceof HTMLElement) {
+      lockIcon.addEventListener('click', (event) => {
+        event.stopPropagation();
+        speechBubble.style.display = speechBubble.style.display === 'none' ? 'block' : 'none';
+      });
 
-  document.addEventListener('click', () => {
-    speechBubble.style.display = 'none';
+      document.addEventListener('click', () => {
+        speechBubble.style.display = 'none';
+      });
+    }
   });
 </script>
 
 <style>
+  .speech-bubble {
+    display: none;
+  }
   .billing-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -214,7 +221,6 @@ import Countdown from '../components/shared/Countdown.astro';
     padding: 0.5rem;
     border-radius: 4px;
     white-space: nowrap;
-    display: none;
   }
 
   .speech-bubble::after {
