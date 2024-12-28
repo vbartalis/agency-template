@@ -8,10 +8,10 @@ const OrderSummary = () => {
   const [localSelections, setLocalSelections] = createSignal<
     { color: string; size: string }[]
   >([]);
-  const [totalDiscountedPrice, setTotalDiscountedPrice] =
-    createSignal<number>(0);
+  const [totalDiscountedPrice, setTotalDiscountedPrice] = createSignal<number>(0);
   const [totalOriginalPrice, setTotalOriginalPrice] = createSignal<number>(0);
   const [savePercentage, setSavePercentage] = createSignal<number>(0);
+  const [isExpanded, setIsExpanded] = createSignal(true);
 
   onMount(() => {
     const storedQuantity = window.localStorage.getItem('selectedQuantity');
@@ -19,148 +19,156 @@ const OrderSummary = () => {
 
     if (storedQuantity) {
       const quantity = parseInt(storedQuantity);
-      console.log('selectedQuantity from localStorage:', quantity);
       setLocalQuantity(quantity);
 
       const priceInfo = prices[quantity] || prices[1];
       setTotalDiscountedPrice(quantity * priceInfo.pricePerPair);
       setTotalOriginalPrice(quantity * priceInfo.originalPrice);
       setSavePercentage(priceInfo.savePercentage);
-    } else {
-      console.log('selectedQuantity not found in localStorage');
     }
 
     if (storedSelections) {
       const selections = JSON.parse(storedSelections);
-      console.log('selections from localStorage:', selections);
       setLocalSelections(selections);
-    } else {
-      console.log('selections not found in localStorage');
     }
   });
 
   const formatPrice = (price: number) => `$${price.toFixed(2)}`;
 
-  const goToCheckout = () => {
-    window.location.href = '/checkout'; // Change this to the actual checkout page URL
-  };
+  const toggleSummary = () => setIsExpanded(!isExpanded());
 
   return (
     <div class="order-summary">
-      <div class="header">
+      <div class="header" onClick={toggleSummary}>
         <h2>Order Summary</h2>
         <span class="total">{formatPrice(totalDiscountedPrice())}</span>
       </div>
 
-      <div class="new-release">
-        <h3>New 2024 Release</h3>
-        <p class="customers">13,427+ Happy Customers</p>
-        <p class="benefit">Relieve pressure on your feet and joints</p>
-      </div>
-
-      {localSelections().map((item) => (
-        <div class="item">
-          <img
-            src={
-              products[0].colors.find((c) => c.name === item.color)?.image || ''
-            }
-            alt="Grounded X1"
-            class="shoe-image"
-          />
-          <div class="item-details">
-            <h4> Grounded X1</h4>
-            <p>Color: {item.color}</p>
-            <p>Size: MEN {item.size} / WOMEN {Number(item.size) + 1.5}</p>
-            <button class="edit-btn" onClick={goToCheckout}>Edit Order</button>
+      {isExpanded() ? (
+        <>
+          <div class="new-release">
+            <h3>New 2024 Release</h3>
+            <div class="rating">
+              <img src="https://offer.groundedfootwear.co/freedom/en/us/img/stars-5.svg" alt="5 stars" class="stars" />
+              <span>27,983+ Happy Customers</span>
+            </div>
+            <p class="benefit">Relieve pressure on your feet and joints</p>
           </div>
-        </div>
-      ))}
 
-      <div class="price-details">
-        <div class="retail">
-          <span>Retail</span>
-          <span class="strike-through">
-            {formatPrice(totalOriginalPrice())}
-          </span>
-        </div>
-        <p class="shipping-note">
-          Shipping and tax will be settled upon checkout confirmation
-        </p>
-        <div class="savings">
-          <span>Today you saved {savePercentage()}%</span>
-          <span class="discount">
-            Discount:{' '}
-            {formatPrice(totalOriginalPrice() - totalDiscountedPrice())}
-          </span>
-        </div>
-        <div class="grand-total">
-          <span>Grand Total:</span>
-          <span class="final-price">{formatPrice(totalDiscountedPrice())}</span>
-        </div>
-      </div>
+          {localSelections().map((item) => (
+            <div class="item">
+              <img
+                src={products[0].colors.find((c) => c.name === item.color)?.image || ''}
+                alt="Grounded X1"
+                class="shoe-image"
+              />
+              <div class="item-details">
+                <h4>Grounded X1</h4>
+                <p>Color: {item.color}</p>
+                <p>Size: MEN {item.size} / WOMEN {Number(item.size) + 1.5}</p>
+              </div>
+            </div>
+          ))}
 
-      <button class="close-btn">Click to Close Summary</button>
+          <div class="price-details">
+            <div class="retail">
+              <span>Subtotal</span>
+              <span class="strike-through">
+                {formatPrice(totalOriginalPrice())}
+              </span>
+            </div>
+            <p class="shipping-note">
+              Shipping and tax will be settled upon checkout confirmation
+            </p>
+            <div class="savings">
+              <span>Today you saved</span>
+              <span class="discount">
+                Discount: {formatPrice(totalOriginalPrice() - totalDiscountedPrice())}
+              </span>
+            </div>
+            <div class="grand-total">
+              <span>Grand Total:</span>
+              <span class="final-price">{formatPrice(totalDiscountedPrice())}</span>
+            </div>
+          </div>
+
+          <button class="close-btn" onClick={toggleSummary}>
+            Click to Close Summary ↑
+          </button>
+        </>
+      ) : (
+        <button class="expand-btn" onClick={toggleSummary}>
+          Click to See Summary ↓
+        </button>
+      )}
 
       <style>{`
         .order-summary {
-          max-width: 600px;
-          margin: 0 auto;
-          padding: 1.5rem;
           background: white;
           border-radius: 8px;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
         }
 
         .header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 1rem;
-          padding-bottom: 1rem;
-          border-bottom: 1px solid #e2e8f0;
+          padding: 1rem;
+          background: #004236;
+          color: white;
+          cursor: pointer;
         }
 
         .header h2 {
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 600;
           margin: 0;
         }
 
         .total {
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 600;
         }
 
         .new-release {
-          margin-bottom: 1.5rem;
+          padding: 1rem;
+          border-bottom: 1px solid #e2e8f0;
         }
 
         .new-release h3 {
           color: #ef4444;
-          font-size: 1.25rem;
+          font-size: 1.125rem;
           margin: 0 0 0.5rem 0;
         }
 
-        .customers {
-          font-weight: 500;
-          margin: 0.25rem 0;
+        .rating {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .stars {
+          height: 1rem;
         }
 
         .benefit {
           color: #4b5563;
-          margin: 0.25rem 0;
+          margin: 0;
+          font-size: 0.875rem;
         }
 
         .item {
           display: flex;
           gap: 1rem;
-          padding: 1rem 0;
+          padding: 1rem;
           border-bottom: 1px solid #e2e8f0;
         }
 
         .shoe-image {
-          width: 100px;
-          height: auto;
+          width: 80px;
+          height: 80px;
           object-fit: cover;
           border-radius: 4px;
         }
@@ -174,23 +182,14 @@ const OrderSummary = () => {
         .item-details p {
           margin: 0.25rem 0;
           color: #4b5563;
-        }
-
-        .edit-btn {
-          color: #1a56db;
-          text-decoration: underline;
-          background: none;
-          border: none;
-          padding: 0;
-          cursor: pointer;
           font-size: 0.875rem;
         }
 
         .price-details {
-          margin-top: 1.5rem;
+          padding: 1rem;
         }
 
-        .retail {
+        .retail, .savings, .grand-total {
           display: flex;
           justify-content: space-between;
           margin-bottom: 0.5rem;
@@ -204,13 +203,7 @@ const OrderSummary = () => {
         .shipping-note {
           color: #6b7280;
           font-size: 0.875rem;
-          margin: 1rem 0;
-        }
-
-        .savings {
-          display: flex;
-          justify-content: space-between;
-          margin: 1rem 0;
+          margin: 0.5rem 0;
         }
 
         .discount {
@@ -218,23 +211,26 @@ const OrderSummary = () => {
         }
 
         .grand-total {
-          display: flex;
-          justify-content: space-between;
           font-weight: 600;
-          font-size: 1.25rem;
+          font-size: 1.125rem;
           margin-top: 1rem;
+          border-top: 1px solid #e2e8f0;
+          padding-top: 1rem;
         }
 
-        .close-btn {
+        .close-btn, .expand-btn {
           width: 100%;
           text-align: center;
           color: #4b5563;
           background: none;
           border: none;
           padding: 1rem;
-          margin-top: 1rem;
           cursor: pointer;
-          text-decoration: underline;
+          font-size: 0.875rem;
+        }
+
+        .close-btn:hover, .expand-btn:hover {
+          background: #f3f4f6;
         }
       `}</style>
     </div>
