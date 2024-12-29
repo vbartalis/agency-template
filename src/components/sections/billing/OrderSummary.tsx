@@ -11,7 +11,7 @@ const OrderSummary = () => {
   const [totalDiscountedPrice, setTotalDiscountedPrice] = createSignal<number>(0);
   const [totalOriginalPrice, setTotalOriginalPrice] = createSignal<number>(0);
   const [savePercentage, setSavePercentage] = createSignal<number>(0);
-  const [isExpanded, setIsExpanded] = createSignal(true);
+  const [isExpanded, setIsExpanded] = createSignal(false);
 
   onMount(() => {
     const storedQuantity = window.localStorage.getItem('selectedQuantity');

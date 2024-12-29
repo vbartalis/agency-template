@@ -10,48 +10,51 @@ import Countdown from '../components/shared/Countdown.astro';
     <div class="billing-container">
       <div class="billing-left">
         <Countdown initialMinutes={10} />
+        <div class="order-summary-mobile">
+          <OrderSummary client:visible />
+        </div>
         <div class="billing-form">
-        <h1>Shipping address</h1>
-        <form>
-          <input type="email" placeholder="Email address" required />
-          <div class="name-fields">
-            <input type="text" placeholder="First name" required />
-            <input type="text" placeholder="Last name" required />
-          </div>
-          <label for="country-region">Country/Region</label>
-          <select id="country-region" name="country-region" required>
-            <option value="US" selected>United States</option>
-          </select>
-          <input type="text" placeholder="Enter your address here" required />
-          
-          <h2>Payment</h2>
-          <div class="payment-method">
-            <label>
-              <input type="radio" name="payment" checked />
-              Credit Card
-            </label>
+          <h1>Shipping address</h1>
+          <form>
+            <input type="email" placeholder="Email address" required />
+            <div class="name-fields">
+              <input type="text" placeholder="First name" required />
+              <input type="text" placeholder="Last name" required />
+            </div>
+            <label for="country-region">Country/Region</label>
+            <select id="country-region" name="country-region" required>
+              <option value="US" selected>United States</option>
+            </select>
+            <input type="text" placeholder="Enter your address here" required />
+            
+            <h2>Payment</h2>
+            <div class="payment-method">
+              <label>
+                <input type="radio" name="payment" checked />
+                Credit Card
+              </label>
               <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Visa" />
-          </div>
-          <div class="card-number-container">
-            <input type="text" placeholder="Card number" required />
-            <img src="https://offer.groundedfootwear.co/freedom/en/us/v7/images/card-lock.png" alt="Lock" class="lock-icon" />
-            <div class="speech-bubble">All transactions are secure and encrypted.</div>
-          </div>
-          <div class="expiry-security">
-            <input type="text" placeholder="Month" required />
-            <input type="text" placeholder="Year" required />
-            <input type="text" placeholder="Security code" required />
-          </div>
-          <label>
-            <input type="checkbox" checked />
-            Use shipping address as billing address
-          </label>
-          <button type="submit">Complete Your Secure Purchase</button>
-        </form>
-        <PaymentInfo />
+            </div>
+            <div class="card-number-container">
+              <input type="text" placeholder="Card number" required />
+              <img src="https://offer.groundedfootwear.co/freedom/en/us/v7/images/card-lock.png" alt="Lock" class="lock-icon" />
+              <div class="speech-bubble">All transactions are secure and encrypted.</div>
+            </div>
+            <div class="expiry-security">
+              <input type="text" placeholder="Month" required />
+              <input type="text" placeholder="Year" required />
+              <input type="text" placeholder="Security code" required />
+            </div>
+            <label>
+              <input type="checkbox" checked />
+              Use shipping address as billing address
+            </label>
+            <button type="submit">Complete Your Secure Purchase</button>
+          </form>
+          <PaymentInfo />
+        </div>
       </div>
-      </div>
-      <div class="billing-right order-summary-container">
+      <div class="billing-right order-summary-desktop">
         <OrderSummary client:visible />
       </div>
     </div>
@@ -154,7 +157,7 @@ import Countdown from '../components/shared/Countdown.astro';
     font-size: 1.5rem;
     text-align: left;
     margin-top: 1rem;
-    margin-bottom: 0.25rem; /* Further reduced to move content even closer */
+    margin-bottom: 0.25rem;
   }
 
   h1 {
@@ -180,7 +183,7 @@ import Countdown from '../components/shared/Countdown.astro';
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 0.25rem; /* Further reduced to move content even closer */
+    margin-top: 0.25rem;
   }
 
   .payment-method img {
@@ -251,17 +254,25 @@ import Countdown from '../components/shared/Countdown.astro';
     gap: 0.5rem;
   }
 
+  .order-summary-mobile {
+    display: none;
+  }
+
+  .order-summary-desktop {
+    display: block;
+  }
+
   @media (max-width: 1024px) {
     .billing-container {
-      grid-template-columns: 1fr;
+      flex-direction: column;
     }
 
-    .billing-form {
-      order: 2;
+    .order-summary-mobile {
+      display: block;
     }
 
-    .order-summary-container {
-      order: 1;
+    .order-summary-desktop {
+      display: none;
     }
   }
 
@@ -287,5 +298,4 @@ import Countdown from '../components/shared/Countdown.astro';
       width: calc(33.33% - 0.35rem);
     }
   }
-  font-family: Arial, Helvetica, sans-serif;
 </style>
