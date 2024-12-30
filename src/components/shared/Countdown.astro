@@ -7,25 +7,19 @@ interface Props {
 const { coupon = "HOLIDAY24", initialMinutes = 10 } = Astro.props;
 ---
 
-<div class="max-w-[600px] mx-auto">
-<div class="flex items-center w-full bg-gradient-to-r from-black to-green-800 text-white">
-    <div class="bg-black px-6 py-3">
-      <div class="flex flex-col items-center gap-2">
-        <div class="flex items-center gap-2 text-white">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <span class="font-bold text-white">{coupon}</span>
-        </div>
-        <span class="bg-yellow-400 text-white text-xs px-2 py-0.5 rounded smaller-promo-text">PROMO APPLIED</span>
-      </div>
+<div class="countdown-wrapper">
+  <div class="countdown-container">
+    <div class="promo-section">
+      <svg class="checkmark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+      <span class="code">{coupon}</span>
+      <span class="badge">PROMO APPLIED</span>
     </div>
-    
-    <div class="flex-1 px-4 py-3">
-        <span class="text-sm font-medium">
-        Promo code expires in:
-        <span class="countdown text-yellow-400 font-bold ml-1">00:00</span>. Stay on this
-        page
+    <div class="timer-section">
+      <span class="timer-text">
+        Promo code expires in: <span class="countdown">00:00</span>
+        <span class="stay-text">Stay on this page</span>
       </span>
     </div>
   </div>
@@ -49,3 +43,88 @@ const { coupon = "HOLIDAY24", initialMinutes = 10 } = Astro.props;
   updateTimer();
   setInterval(updateTimer, 1000);
 </script>
+
+<style>
+  .countdown-wrapper {
+    width: 100%;
+  }
+
+  .countdown-container {
+    display: flex;
+    background: linear-gradient(to right, #000, #004236);
+    border-radius: 4px;
+    overflow: hidden;
+    color: white;
+  }
+
+  .promo-section {
+    background: #000;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .checkmark {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .code {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .badge {
+    background: #fbbf24;
+    color: #000;
+    padding: 0.125rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .timer-section {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .timer-text {
+    font-size: 0.875rem;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .countdown {
+    color: #fbbf24;
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .countdown-container {
+      flex-direction: column;
+    }
+
+    .promo-section {
+      justify-content: center;
+      padding: 0.5rem;
+    }
+
+    .timer-section {
+      justify-content: center;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .timer-text {
+      justify-content: center;
+    }
+  }
+</style>

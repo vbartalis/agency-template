@@ -7,27 +7,26 @@ import Countdown from '../components/shared/Countdown.astro';
 ---
 
 <Layout title="Checkout">
-  <main>
-    <Countdown coupon="HOLIDAY24" initialMinutes={10} />
-    <QuantitySelector />
-    <ColorSizeSelector client:visible />
-    <div class="payment-info-checkout">
-      <PaymentInfo />
+  <main class="checkout-page">
+    <div class="max-w-[600px] mx-auto w-full px-4">
+      <Countdown coupon="HOLIDAY24" initialMinutes={10} />
+      <div class="mt-4">
+        <QuantitySelector />
+      </div>
+      <div class="mt-4">
+        <ColorSizeSelector client:visible />
+      </div>
+      <div class="mt-4">
+        <PaymentInfo />
+      </div>
     </div>
   </main>
 </Layout>
 
 <style>
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
+  .checkout-page {
     background: #f8fafc;
     min-height: 100vh;
-    padding: 2rem 1rem;
-  }
-
-  .payment-info-checkout {
-    max-width: 600px;
-    margin: 0 auto;
+    padding: 2rem 0;
   }
 </style>
