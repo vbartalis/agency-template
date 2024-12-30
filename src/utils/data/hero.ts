@@ -56,7 +56,7 @@ const hero = {
         },
         {
             id: 6,
-            src: "https://ae-pic-a1.aliexpress-media.com/kf/S899d2197729b4fd394499cd32e08b0696.jpg_640x640.jpg_.webp",
+            src: "https://ae-pic-a1.aliexpress-media.com/kf/S696843491c2e4c6b955bc8a9b3ac62b2t.jpg_960x960q75.jpg_.avif",
             alt: "Pink barefoot shoe"
         },
     ],
