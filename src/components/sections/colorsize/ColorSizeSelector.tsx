@@ -274,11 +274,10 @@ const ColorSizeSelector = (): JSX.Element => {
           font-weight: 600;
           cursor: pointer;
           display: flex;
-          justify-content: center;
           align-items: center;
+          justify-content: center;
           gap: 0.5rem;
-          margin: 0 1.5rem;
-          width: calc(100% - 3rem);
+          height: 48px;
         }
 
         .next-button:hover {
@@ -292,11 +291,6 @@ const ColorSizeSelector = (): JSX.Element => {
 
           .error-message {
             margin: 0.5rem 1rem;
-          }
-
-          .next-button {
-            margin: 0 1rem;
-            width: calc(100% - 2rem);
           }
         }
       `}</style>
