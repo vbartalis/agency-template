@@ -34,6 +34,7 @@ import QuantityOption from './QuantityOption.astro';
   .quantity-selector {
     max-width: 600px;
     margin: 0 auto;
+    font-family: "Poppins", sans-serif;
   }
 
   .quantity-selector + .color-size-selector {
@@ -65,19 +66,22 @@ import QuantityOption from './QuantityOption.astro';
 
   .cta-button {
     width: 100%;
+    height: 48px;
     border-radius: 0.5rem;
     background: #fbbf24;
     color: #000;
     border: none;
     padding: 1rem 1.5rem;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     transition: background-color 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 
   .cta-button:hover {
@@ -87,51 +91,4 @@ import QuantityOption from './QuantityOption.astro';
   .arrow {
     font-size: 1.25rem;
   }
-
-  .payment-info {
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-  }
-
-  .payment-cards {
-    max-width: 300px;
-    height: auto;
-  }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const storedQuantity = window.localStorage.getItem('selectedQuantity') || '1';
-    window.localStorage.setItem('selectedQuantity', storedQuantity);
-    
-    const options = document.querySelectorAll('.quantity-option');
-    options.forEach(option => {
-      const pairs = option.getAttribute('data-pairs');
-      const radio = option.querySelector('input[type="radio"]') as HTMLInputElement;
-      
-      if (pairs === storedQuantity) {
-        option.classList.add('selected');
-        if (radio) radio.checked = true;
-      }
-      
-      option.addEventListener('click', () => {
-        if (pairs) {
-          window.localStorage.setItem('selectedQuantity', pairs);
-          window.dispatchEvent(new CustomEvent('quantityChange', { detail: parseInt(pairs) }));
-          
-          options.forEach(opt => {
-            opt.classList.remove('selected');
-            const optRadio = opt.querySelector('input[type="radio"]') as HTMLInputElement;
-            if (optRadio) optRadio.checked = false;
-          });
-          
-          option.classList.add('selected');
-          if (radio) radio.checked = true;
-        }
-      });
-    });
-    
-    window.dispatchEvent(new CustomEvent('quantityChange', { detail: parseInt(storedQuantity) }));
-  });
-</script>
