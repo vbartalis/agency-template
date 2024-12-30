@@ -27,14 +27,14 @@ const navItems = [
 ];
 ---
 
-<header id="navbar" class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md border-b border-gray-200 dark:border-gray-700 transition-transform duration-300">
+<header id="navbar" class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md border-b border-gray-200 dark:border-gray-700 transition-transform duration-300 h-20 lg:h-24">
   <Container>
     <nav class="w-full flex justify-between gap-6 relative overflow-visible">
       <!-- logo -->
       <div class="min-w-max inline-flex relative">
         <a href="/" class="relative flex items-center gap-3">
-          <div class="relative w-6 h-6 lg:w-7 lg:h-7 overflow-hidden flex rounded-xl">
-            <img src="src/assets/logos/WebsiteLogo.webp" alt="Website Logo" class="w-full h-full object-contain" />
+          <div class="logo-container">
+            <img src="src/assets/logos/WebsiteLogo.webp" alt="Website Logo" class="logo-image" />
           </div>
         </a>
       </div>
@@ -110,4 +110,29 @@ const navItems = [
   #navbar {
     will-change: transform;
   }
+
+  .logo-container {
+    position: relative;
+    width: 80px;
+    height: 80px; /* Default for mobile */
+    overflow: hidden;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(0.9);
+  }
+
+  @media (min-width: 1024px) {
+    .logo-container {
+      height: 95px; /* Height for desktop */
+    }
+  }
+</style>
 </style>
