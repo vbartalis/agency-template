@@ -4,6 +4,7 @@ import PaymentInfo from '../components/shared/PaymentInfo.astro';
 import OrderSummary from '../components/sections/billing/OrderSummary.tsx';
 import Countdown from '../components/shared/Countdown.astro';
 import Footer from '../layouts/Footer.astro';
+import AddressForm from '../components/sections/billing/AddressForm.astro';
 ---
 
 <Layout title="Billing - Your Store">
@@ -18,15 +19,7 @@ import Footer from '../layouts/Footer.astro';
           <h1>Shipping address</h1>
           <form>
             <input type="email" placeholder="Email address" required />
-            <div class="name-fields">
-              <input type="text" placeholder="First name" required />
-              <input type="text" placeholder="Last name" required />
-            </div>
-            <label for="country-region">Country/Region</label>
-            <select id="country-region" name="country-region" required>
-              <option value="US" selected>United States</option>
-            </select>
-            <input type="text" placeholder="Enter your address here" required />
+            <AddressForm type="shipping" />
             
             <h2>Payment</h2>
             <div class="payment-method">
@@ -34,22 +27,22 @@ import Footer from '../layouts/Footer.astro';
                 <input type="radio" name="payment" checked />
                 Credit Card
               </label>
-              <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Visa" />
+              <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Credit Cards" />
             </div>
-            <div class="card-number-container">
-              <input type="text" placeholder="Card number" required />
-              <img src="https://offer.groundedfootwear.co/freedom/en/us/v7/images/card-lock.png" alt="Lock" class="lock-icon" />
-              <div class="speech-bubble">All transactions are secure and encrypted.</div>
-            </div>
+            <input type="text" placeholder="Card number" required class="card-input" />
             <div class="expiry-security">
               <input type="text" placeholder="Month" required />
               <input type="text" placeholder="Year" required />
               <input type="text" placeholder="Security code" required />
             </div>
-            <label>
-              <input type="checkbox" checked />
+            <label class="checkbox-label">
+              <input type="checkbox" id="same-address" checked />
               Use shipping address as billing address
             </label>
+            <div id="billing-address" class="billing-address hidden">
+              <h2>Billing Address</h2>
+              <AddressForm type="billing" />
+            </div>
             <button type="submit">Complete Your Secure Purchase</button>
           </form>
           <PaymentInfo />
@@ -64,31 +57,24 @@ import Footer from '../layouts/Footer.astro';
 </Layout>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const lockIcon = document.querySelector('.lock-icon');
-    const speechBubble = document.querySelector('.speech-bubble');
+  const sameAddressCheckbox = document.getElementById('same-address') as HTMLInputElement;
+  const billingAddressSection = document.getElementById('billing-address');
 
-    if (lockIcon instanceof HTMLElement && speechBubble instanceof HTMLElement) {
-      lockIcon.addEventListener('click', (event) => {
-        event.stopPropagation();
-        speechBubble.style.display = speechBubble.style.display === 'none' ? 'block' : 'none';
-      });
-
-      document.addEventListener('click', () => {
-        speechBubble.style.display = 'none';
-      });
-    }
+  sameAddressCheckbox?.addEventListener('change', () => {
+    billingAddressSection?.classList.toggle('hidden', sameAddressCheckbox.checked);
   });
 </script>
 
 <style>
-  .speech-bubble {
-    display: none;
-  }
   .billing-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .hidden {
+    display: none;
   }
 
   .billing-container {
@@ -131,11 +117,18 @@ import Footer from '../layouts/Footer.astro';
     background: #f9f9f9;
     color: #000;
     font-weight: 600;
+    font-family: "Poppins", sans-serif;
     width: 100%;
-    box-sizing: border-box;
   }
 
-  button {
+  .card-input {
+    background-image: url('https://offer.groundedfootwear.co/freedom/en/us/v7/images/card-lock.png');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 20px;
+  }
+
+  button[type="submit"] {
     background: #000;
     color: #fff;
     padding: 1rem;
@@ -144,36 +137,17 @@ import Footer from '../layouts/Footer.astro';
     cursor: pointer;
     width: 100%;
     font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    height: 48px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 
-  h1, h2, p {
+  h1, h2 {
     color: #000;
-    font-size: 1.125rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    font-family: "Poppins", sans-serif;
     margin-bottom: 1rem;
     text-align: left;
-  }
-
-  .billing-form h2 {
-    font-size: 1.5rem;
-    text-align: left;
-    margin-top: 1rem;
-    margin-bottom: 0.25rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .name-fields {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .name-fields input {
-    flex: 1;
   }
 
   .payment-method {
@@ -181,11 +155,9 @@ import Footer from '../layouts/Footer.astro';
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    border: 2px solid #000;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 0.25rem;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #f9f9f9;
   }
 
   .payment-method img {
@@ -193,75 +165,34 @@ import Footer from '../layouts/Footer.astro';
   }
 
   .payment-method label {
-    font-size: 1rem;
-    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-  }
-
-  .card-number-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .lock-icon {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
-
-  .speech-bubble {
-    position: absolute;
-    right: 3rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #000;
-    color: #fff;
-    padding: 0.5rem;
-    border-radius: 4px;
-    white-space: nowrap;
-  }
-
-  .speech-bubble::after {
-    content: '';
-    position: absolute;
-    right: -8px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 8px solid transparent;
-    border-left-color: #000;
+    color: #000;
+    font-family: "Poppins", sans-serif;
   }
 
   .expiry-security {
     display: flex;
     gap: 0.5rem;
-    width: 100%;
   }
 
   .expiry-security input {
     width: 33.33%;
-    min-width: 0;
   }
 
-  label {
-    color: #000;
+  .checkbox-label {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: #000;
+    font-family: "Poppins", sans-serif;
   }
 
-  .order-summary-mobile {
-    display: none;
-  }
-
-  .order-summary-desktop {
-    display: block;
+  .billing-address {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+    margin-top: 1rem;
   }
 
   @media (max-width: 1024px) {
@@ -285,11 +216,6 @@ import Footer from '../layouts/Footer.astro';
 
     .billing-form {
       padding: 1rem;
-    }
-
-    .name-fields {
-      flex-direction: column;
-      gap: 0.5rem;
     }
 
     .expiry-security {

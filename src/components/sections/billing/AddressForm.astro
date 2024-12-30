@@ -1,0 +1,56 @@
+---
+interface Props {
+  type: 'shipping' | 'billing';
+}
+
+const { type } = Astro.props;
+---
+
+<div class="address-form">
+  <div class="name-fields">
+    <input type="text" placeholder="First name" required />
+    <input type="text" placeholder="Last name" required />
+  </div>
+  <label for={`${type}-country`}>Country/Region</label>
+  <select id={`${type}-country`} name={`${type}-country`} required>
+    <option value="US" selected>United States</option>
+  </select>
+  <input type="text" placeholder="Enter your address here" required />
+</div>
+
+<style>
+  .address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .name-fields {
+    display: flex;
+    gap: 1rem;
+  }
+
+  input, select {
+    padding: 0.75rem;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #f9f9f9;
+    color: #000;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+  }
+
+  label {
+    color: #000;
+    font-family: "Poppins", sans-serif;
+  }
+
+  @media (max-width: 600px) {
+    .name-fields {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>
