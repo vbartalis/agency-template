@@ -29,7 +29,11 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
               </label>
               <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Credit Cards" />
             </div>
-            <input type="text" placeholder="Card number" required class="card-input" />
+            <div class="card-number-container">
+              <input type="text" placeholder="Card number" required />
+              <img src="https://offer.groundedfootwear.co/freedom/en/us/v7/images/card-lock.png" alt="Lock" class="lock-icon" />
+              <div class="speech-bubble">All transactions are secure and encrypted.</div>
+            </div>
             <div class="expiry-security">
               <input type="text" placeholder="Month" required />
               <input type="text" placeholder="Year" required />
@@ -63,6 +67,20 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
   sameAddressCheckbox?.addEventListener('change', () => {
     billingAddressSection?.classList.toggle('hidden', sameAddressCheckbox.checked);
   });
+
+  const lockIcon = document.querySelector('.lock-icon');
+    const speechBubble = document.querySelector('.speech-bubble');
+
+    if (lockIcon instanceof HTMLElement && speechBubble instanceof HTMLElement) {
+      lockIcon.addEventListener('click', (event) => {
+        event.stopPropagation();
+        speechBubble.style.display = speechBubble.style.display === 'none' ? 'block' : 'none';
+      });
+
+      document.addEventListener('click', () => {
+        speechBubble.style.display = 'none';
+      });
+    }
 </script>
 
 <style>
@@ -149,7 +167,7 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
 
   h1, h2 {
     color: #000;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
     margin-bottom: 1rem;
     text-align: left;
@@ -198,6 +216,44 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
     border-top: 1px solid #e2e8f0;
     padding-top: 1rem;
     margin-top: 1rem;
+  }
+
+  .lock-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .card-number-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .speech-bubble {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 8px solid transparent;
+    border-left-color: #000;
   }
 
   @media (max-width: 1024px) {
