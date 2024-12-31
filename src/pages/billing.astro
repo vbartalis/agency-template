@@ -12,9 +12,6 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
     <div class="billing-container">
       <div class="billing-left">
         <Countdown initialMinutes={10} />
-        <div class="order-summary-mobile">
-          <OrderSummary client:visible />
-        </div>
         <div class="billing-form">
           <h1>Shipping address</h1>
           <form>
@@ -259,14 +256,6 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
   @media (max-width: 1024px) {
     .billing-container {
       flex-direction: column;
-    }
-
-    .order-summary-mobile {
-      display: block;
-    }
-
-    .order-summary-desktop {
-      display: none;
     }
   }
 
