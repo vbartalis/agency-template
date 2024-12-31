@@ -12,24 +12,36 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
     <div class="billing-container">
       <div class="billing-left">
         <Countdown initialMinutes={10} />
+        <div class="order-summary-mobile">
+          <OrderSummary client:visible initialExpanded={true} />
+        </div>
         <div class="billing-form">
           <h1>Shipping address</h1>
           <form>
             <input type="email" placeholder="Email address" required />
             <AddressForm type="shipping" />
-            
+
             <h2 class="payment-title">Payment</h2>
             <div class="payment-method">
               <label>
                 <input type="radio" name="payment" checked />
                 Credit Card
               </label>
-              <img src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png" alt="Credit Cards" />
+              <img
+                src="https://offer.groundedfootwear.co/freedom/en/us/v1/img/cards.png"
+                alt="Credit Cards"
+              />
             </div>
             <div class="card-number-container">
               <input type="text" placeholder="Card number" required />
-              <img src="https://offer.groundedfootwear.co/freedom/en/us/v7/images/card-lock.png" alt="Lock" class="lock-icon" />
-              <div class="speech-bubble" style="display: none;">All transactions are secure and encrypted.</div>
+              <img
+                src="https://offer.groundedfootwear.co/freedom/en/us/v7/images/card-lock.png"
+                alt="Lock"
+                class="lock-icon"
+              />
+              <div class="speech-bubble" style="display: none;">
+                All transactions are secure and encrypted.
+              </div>
             </div>
             <div class="expiry-security">
               <input type="text" placeholder="Month" required />
@@ -50,7 +62,9 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
         </div>
       </div>
       <div class="billing-right order-summary-desktop">
-        <OrderSummary client:visible />
+        <div class="order-summary-wrapper">
+          <OrderSummary client:visible />
+        </div>
       </div>
     </div>
   </div>
@@ -58,26 +72,32 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
 </Layout>
 
 <script>
-  const sameAddressCheckbox = document.getElementById('same-address') as HTMLInputElement;
-  const billingAddressSection = document.getElementById('billing-address');
+  const sameAddressCheckbox = document.getElementById(
+    "same-address"
+  ) as HTMLInputElement;
+  const billingAddressSection = document.getElementById("billing-address");
 
-  sameAddressCheckbox?.addEventListener('change', () => {
-    billingAddressSection?.classList.toggle('hidden', sameAddressCheckbox.checked);
+  sameAddressCheckbox?.addEventListener("change", () => {
+    billingAddressSection?.classList.toggle(
+      "hidden",
+      sameAddressCheckbox.checked
+    );
   });
 
-  const lockIcon = document.querySelector('.lock-icon');
-    const speechBubble = document.querySelector('.speech-bubble');
+  const lockIcon = document.querySelector(".lock-icon");
+  const speechBubble = document.querySelector(".speech-bubble");
 
-    if (lockIcon instanceof HTMLElement && speechBubble instanceof HTMLElement) {
-      lockIcon.addEventListener('click', (event) => {
-        event.stopPropagation();
-        speechBubble.style.display = speechBubble.style.display === 'none' ? 'block' : 'none';
-      });
+  if (lockIcon instanceof HTMLElement && speechBubble instanceof HTMLElement) {
+    lockIcon.addEventListener("click", (event) => {
+      event.stopPropagation();
+      speechBubble.style.display =
+        speechBubble.style.display === "none" ? "block" : "none";
+    });
 
-      document.addEventListener('click', () => {
-        speechBubble.style.display = 'none';
-      });
-    }
+    document.addEventListener("click", () => {
+      speechBubble.style.display = "none";
+    });
+  }
 </script>
 
 <style>
@@ -90,6 +110,14 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
 
   .hidden {
     display: none;
+  }
+
+  .order-summary-mobile {
+    display: none;
+  }
+
+  .order-summary-wrapper {
+    display: block;
   }
 
   .billing-container {
@@ -253,9 +281,13 @@ import AddressForm from '../components/sections/billing/AddressForm.astro';
     border-left-color: #000;
   }
 
-  @media (max-width: 1024px) {
-    .billing-container {
-      flex-direction: column;
+  @media (max-width: 768px) {
+    .order-summary-mobile {
+      display: block;
+    }
+
+    .order-summary-wrapper {
+      display: none;
     }
   }
 
